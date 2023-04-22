@@ -1,0 +1,50 @@
+.login-container {
+  background-image: url("../img/marcin-lukasik-uYpOYyJdhRE-unsplash.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100vh;
+  padding-left: 40px;
+  gap: 30px;
+}
+
+.login-container div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  align-items: flex-start;
+}
+.login-btn {
+  background-color: red;
+  color: white;
+}
+.login-container input {
+  padding: 5px;
+  width: 300px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  font-weight: 40px;
+  font-size: bold;
+}
+.login-container h1 {
+  text-align: center;
+  /* margin-top: 20px; */
+}
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+form p {
+  color: white;
+  font-size: 20px;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+}
