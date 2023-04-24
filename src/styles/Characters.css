@@ -15,7 +15,6 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-
   background: url("../img/captain\ america.jpg") center/cover;
 }
 
@@ -60,6 +59,7 @@
 .image-character:hover ~ .character-description {
   display: block;
 }
+
 .character-name {
   font-size: 18px;
   color: #ffffff;

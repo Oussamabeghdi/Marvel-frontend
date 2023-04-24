@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import "../styles/ComicsList.css";
 
 const ComicsList = () => {
   const [data, setData] = useState();
@@ -8,19 +9,15 @@ const ComicsList = () => {
 
   const params = useParams();
   const id = params.comicId;
-  console.log(params.comicId);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
           `https://site--marvel-backend--9gtnl5qyn2yw.code.run/comic/${id}`
-          // "http://localhost:4000/comic/" + id
         );
-        // const character = response.data.filter((c) => c.id === parseInt(id));
-        // console.log(character);
+
         setData(response.data);
-        // console.log(response.data.results);
         setIsLoading(false);
       } catch (error) {
         console.log({ message1: error.message });
@@ -32,20 +29,26 @@ const ComicsList = () => {
   return isLoading ? (
     <p>Loading...</p>
   ) : (
-    <section>
-      {data.map((elem, index) => {
-        return (
-          <div key={index}>
-            <img
-              src={elem.thumbnail.path + "." + elem.thumbnail.extension}
-              alt="comics"
-            />
-            <p>{elem.title} </p>
-            <p>{elem.description} </p>
+    <div className="card-container">
+      <div>
+        <img
+          className="comic-image"
+          src={
+            data?.thumbnail.path +
+            "/portrait_uncanny" +
+            "." +
+            data?.thumbnail.extension
+          }
+          alt="comics"
+        />
+        <div className="container">
+          <p className="comic-title">{data?.title} </p>
+          <div className="description-container">
+            <p className="comic-description">{data?.description} </p>
           </div>
-        );
-      })}
-    </section>
+        </div>
+      </div>
+    </div>
   );
 };
 

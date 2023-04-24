@@ -18,10 +18,12 @@
   align-items: center;
   align-items: flex-start;
 }
+
 .login-btn {
   background-color: red;
   color: white;
 }
+
 .login-container input {
   padding: 5px;
   width: 300px;
@@ -32,15 +34,17 @@
   font-weight: 40px;
   font-size: bold;
 }
+
 .login-container h1 {
   text-align: center;
-  /* margin-top: 20px; */
 }
+
 form {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 form p {
   color: white;
   font-size: 20px;

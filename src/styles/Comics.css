@@ -29,11 +29,13 @@
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.52);
 }
+
 .comics-image-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .comics-image {
   object-fit: cover;
   border: 1px solid white;
@@ -47,6 +49,7 @@
   font-weight: bold;
   text-align: center;
 }
+
 .comics-description {
   display: none;
   position: absolute;
@@ -61,18 +64,22 @@
   font-weight: bold;
   text-align: center;
 }
+
 .comics-image:hover ~ .comics-description {
   display: block;
 }
+
 .comic-list {
   height: 100%;
 }
+
 .paginate-comics {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-bottom: 10px;
 }
+
 .red {
   background-color: red;
 }
