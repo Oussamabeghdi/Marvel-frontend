@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/Header.css";
 
-const Menu = ({ token, handleToken }) => {
+const Menu = ({ token, handleTokenAndId, id }) => {
   const [nav, setNav] = useState(false);
 
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const Menu = ({ token, handleToken }) => {
     }
   };
   const handleClickComics = () => {
-    if (token) {
+    if (token && id) {
       navigate("/comics");
     } else {
       navigate("/login");
@@ -53,7 +53,7 @@ const Menu = ({ token, handleToken }) => {
               <button
                 className="logout-btn"
                 onClick={() => {
-                  handleToken(null);
+                  handleTokenAndId(null);
                   navigate("/");
                 }}
               >

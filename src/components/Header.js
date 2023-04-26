@@ -4,14 +4,20 @@ import "../styles/Header.css";
 
 import logo from "../img/fond-decran-marvel.jpg";
 
-const Header = ({ handleToken, token, searchResults, setSearchResults }) => {
+const Header = ({
+  handleTokenAndId,
+  id,
+  token,
+  searchResults,
+  setSearchResults,
+}) => {
   return (
     <header className="header-container">
       <div className="header-logo">
         <img src={logo} alt="marvel" />
       </div>
       <div className="menu-component">
-        <Menu token={token} handleToken={handleToken} />
+        <Menu token={token} handleTokenAndId={handleTokenAndId} id={id} />
       </div>
 
       <Searchbar

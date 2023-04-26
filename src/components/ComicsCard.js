@@ -1,40 +1,49 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ReactComponent as Heart } from "../assets/svg/heart.svg";
+import axios from "axios";
 
-const ComicsCard = ({ item }) => {
+const ComicsCard = ({ item, id }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    // Récupération des favoris actuels de l'utilisateur depuis Local Storage
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    const isAlreadyFavorite = favorites.includes(item._id);
+    (async () => {
+      const favoritesData = await axios.get(
+        `https://site--marvel-backend--9gtnl5qyn2yw.code.run/users/${id}/favorites/comics`
+      );
+      const isFavorite = favoritesData.data?.includes(item._id);
 
-    setIsFavorite(isAlreadyFavorite);
-  }, [item]);
+      setIsFavorite(isFavorite);
+    })();
+  }, [item._id, id]);
 
-  const onAddFavoriteInLocalStorage = () => {
-    if (!isFavorite) {
-      const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-      // Ajouter le personnage aux favoris
-      const newFavorites = [...favorites, item._id];
+  const onAddFavorite = async () => {
+    if (isFavorite) return;
 
-      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    const comicId = item._id;
+
+    const response = await axios.put(
+      `https://site--marvel-backend--9gtnl5qyn2yw.code.run/users/${id}/favorites/comics/${comicId}`
+    );
+
+    const comicFavorites = response.data;
+    if (comicFavorites.includes(comicId)) {
+      setIsFavorite(true);
     }
-    setIsFavorite(true);
   };
 
-  const onRemoveFavorite = () => {
-    if (isFavorite) {
-      const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-      // Supprimer le personnage des favoris
-      const newFavorites = favorites.filter(
-        (favorite) => favorite !== item._id
-      );
+  const onRemoveFavorite = async () => {
+    if (!isFavorite) return;
 
-      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    const comicId = item._id;
 
-      return setIsFavorite(false);
+    const response = await axios.delete(
+      `https://site--marvel-backend--9gtnl5qyn2yw.code.run/users/${id}/favorites/comics/${comicId}`
+    );
+
+    const comicFavorites = response.data;
+    if (!comicFavorites.includes(comicId)) {
+      setIsFavorite(false);
     }
   };
   return (
@@ -60,7 +69,7 @@ const ComicsCard = ({ item }) => {
         <Heart
           className="card-heart"
           style={{ fill: isFavorite ? "red" : "white" }}
-          onClick={isFavorite ? onRemoveFavorite : onAddFavoriteInLocalStorage}
+          onClick={isFavorite ? onRemoveFavorite : onAddFavorite}
         />
         {/* <button
         onClick={isFavorite ? onRemoveFavorite : onAddFavoriteInLocalStorage}

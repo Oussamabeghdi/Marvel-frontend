@@ -19,6 +19,7 @@ library.add(faBars, faHeart, faXmark);
 
 function App() {
   const [token, setToken] = useState(Cookies.get("token-user" || null));
+  const [id, setId] = useState(Cookies.get("userId" || null));
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
@@ -38,15 +39,19 @@ function App() {
     setCurrentPage(() => value);
   }, []);
 
-  const handleToken = (token) => {
-    if (token) {
+  const handleTokenAndId = (token, id) => {
+    if (token && id) {
       setToken(token);
+      setId(id);
 
       Cookies.set("token-user", token, { expires: 28 });
+      Cookies.set("userId", id, { expires: 28 });
     } else {
       setToken(null);
+      setId(null);
 
       Cookies.remove("token-user");
+      Cookies.remove("userId");
     }
   };
 
@@ -54,20 +59,25 @@ function App() {
     <Router>
       <Header
         token={token}
+        id={id}
         searchResults={searchResults}
         setSearchResults={setSearchResults}
-        handleToken={handleToken}
+        handleTokenAndId={handleTokenAndId}
         setToken={setToken}
         modalIsOpen={modalIsOpen}
         setModalIsOpen={setModalIsOpen}
       />
 
       <Routes>
-        <Route path="/" element={<Login handleToken={handleToken} />} />
+        <Route
+          path="/"
+          element={<Login handleTokenAndId={handleTokenAndId} />}
+        />
         <Route
           path="/characters"
           element={
             <Characters
+              id={id}
               searchResults={searchResults}
               currentPage={currentPage}
               onChangeCurrentPage={onChangeCurrentPage}
@@ -77,8 +87,14 @@ function App() {
           }
         />
 
-        <Route path="/signup" element={<Signup handleToken={handleToken} />} />
-        <Route path="/login" element={<Login handleToken={handleToken} />} />
+        <Route
+          path="/signup"
+          element={<Signup handleTokenAndId={handleTokenAndId} />}
+        />
+        <Route
+          path="/login"
+          element={<Login handleTokenAndId={handleTokenAndId} />}
+        />
 
         <Route
           path="/character/:characterId"
@@ -91,6 +107,7 @@ function App() {
           path="/comics"
           element={
             <Comics
+              id={id}
               searchResults={searchResults}
               currentPage={currentPage}
               onChangeCurrentPage={onChangeCurrentPage}

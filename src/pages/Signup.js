@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import "../styles/Signup.css";
 
-const Signup = ({ handleToken }) => {
+const Signup = ({ handleTokenAndId }) => {
   const [username, setUsername] = useState("");
 
   const [email, setEmail] = useState("");
@@ -29,7 +29,7 @@ const Signup = ({ handleToken }) => {
       );
       console.log(response.data);
       if (response.data.token) {
-        handleToken(response.data.token);
+        handleTokenAndId(response.data.token, response.data._id);
         navigate("/characters");
       }
     } catch (error) {

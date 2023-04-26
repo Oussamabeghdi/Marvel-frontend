@@ -12,6 +12,7 @@ const Comics = ({
   onChangeCurrentPage,
   onChangeCurrentPageData,
   currentPage,
+  id,
 }) => {
   const [data, setData] = useState([]);
   const [isloading, setIsloading] = useState(true);
@@ -46,7 +47,7 @@ const Comics = ({
     <section className="wrapper-comics">
       <div className="comics-container">
         {currentPageData.map((item, index) => {
-          return <ComicsCard item={item} key={index} />;
+          return <ComicsCard item={item} key={index} id={id} />;
         })}
       </div>
       <div className="paginate-comics">

@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import "../styles/Login.css";
 
-const Login = ({ handleToken }) => {
+const Login = ({ handleTokenAndId }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,8 +21,8 @@ const Login = ({ handleToken }) => {
       );
       console.log(response.data);
       if (response.data.token) {
-        handleToken(response.data.token);
-        console.log(handleToken);
+        handleTokenAndId(response.data.token, response.data._id);
+        console.log(handleTokenAndId);
         navigate("/characters");
       }
     } catch (error) {

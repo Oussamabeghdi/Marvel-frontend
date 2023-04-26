@@ -12,6 +12,7 @@ const Characters = ({
   currentPageData,
   onChangeCurrentPage,
   onChangeCurrentPageData,
+  id,
 }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -48,7 +49,9 @@ const Characters = ({
     <section className="wrapper-characters">
       <div className="container">
         {currentPageData.map((character) => {
-          return <CharactersCard key={character._id} item={character} />;
+          return (
+            <CharactersCard key={character._id} item={character} id={id} />
+          );
         })}
       </div>
       <div className="paginate-characters">
