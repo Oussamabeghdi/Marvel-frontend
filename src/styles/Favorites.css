@@ -1,0 +1,27 @@
+.favorites-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.selected-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 10px;
+}
+
+.selected-label {
+  color: white;
+}
+
+.selected-type {
+  width: 20%;
+}
+
+.container-text {
+  color: white;
+  text-align: center;
+  font-size: 26px;
+}

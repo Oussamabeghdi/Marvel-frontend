@@ -34,15 +34,17 @@ const Comics = ({
   }, [searchResults]);
 
   return isloading ? (
-    <Oval
-      ariaLabel="loading-indicator"
-      height={100}
-      width={100}
-      strokeWidth={1000}
-      strokeWidthSecondary={1000}
-      color="black"
-      secondaryColor="red"
-    />
+    <div className="loading-wrapper">
+      <Oval
+        ariaLabel="loading-indicator"
+        height={100}
+        width={100}
+        strokeWidth={1000}
+        strokeWidthSecondary={1000}
+        color="black"
+        secondaryColor="red"
+      />
+    </div>
   ) : (
     <section className="wrapper-comics">
       <div className="comics-container">

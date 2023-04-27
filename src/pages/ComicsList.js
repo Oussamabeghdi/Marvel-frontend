@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Oval } from "react-loader-spinner";
 import axios from "axios";
 import "../styles/ComicsList.css";
 
 const ComicsList = () => {
-  const [data, setData] = useState();
+  const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   const params = useParams();
-  const id = params.comicId;
+  const comicId = params.comicId;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://site--marvel-backend--9gtnl5qyn2yw.code.run/comic/${id}`
+          `https://site--marvel-backend--9gtnl5qyn2yw.code.run/comic/${comicId}`
         );
 
         setData(response.data);
@@ -24,10 +25,20 @@ const ComicsList = () => {
       }
     };
     fetchData();
-  }, [id]);
+  }, [comicId]);
 
   return isLoading ? (
-    <p>Loading...</p>
+    <div className="loading-wrapper">
+      <Oval
+        ariaLabel="loading-indicator"
+        height={100}
+        width={100}
+        strokeWidth={1000}
+        strokeWidthSecondary={1000}
+        color="black"
+        secondaryColor="red"
+      />
+    </div>
   ) : (
     <div className="card-container">
       <div>
