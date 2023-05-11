@@ -3,19 +3,19 @@ import { useState, useEffect } from "react";
 import { ReactComponent as Heart } from "../assets/svg/heart.svg";
 import axios from "axios";
 
-const CharactersCard = ({ item, id }) => {
+const CharactersCard = ({ item, userId }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     (async () => {
       const favoritesData = await axios.get(
-        `https://site--marvel-backend--9gtnl5qyn2yw.code.run/users/${id}/favorites/characters`
+        `https://site--marvel-backend--9gtnl5qyn2yw.code.run/users/${userId}/favorites/characters`
       );
       const isFavorite = favoritesData.data?.includes(item._id);
 
       setIsFavorite(isFavorite);
     })();
-  }, [item._id, id]);
+  }, [item._id, userId]);
 
   const onAddFavorite = async () => {
     if (isFavorite) return;
@@ -23,7 +23,7 @@ const CharactersCard = ({ item, id }) => {
     const characterId = item._id;
 
     const response = await axios.put(
-      `https://site--marvel-backend--9gtnl5qyn2yw.code.run/users/${id}/favorites/characters/${characterId}`
+      `https://site--marvel-backend--9gtnl5qyn2yw.code.run/users/${userId}/favorites/characters/${characterId}`
     );
 
     const characterFavorites = response.data;
@@ -38,7 +38,7 @@ const CharactersCard = ({ item, id }) => {
     const characterId = item._id;
 
     const response = await axios.delete(
-      `https://site--marvel-backend--9gtnl5qyn2yw.code.run/users/${id}/favorites/characters/${characterId}`
+      `https://site--marvel-backend--9gtnl5qyn2yw.code.run/users/${userId}/favorites/characters/${characterId}`
     );
 
     const characterFavorites = response.data;

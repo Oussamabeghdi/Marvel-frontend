@@ -30,6 +30,6 @@ h1 {
   font-size: 20px;
   color: white;
 }
-.login.searchbar {
+.login .searchbar {
   display: none;
 }

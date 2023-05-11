@@ -6,14 +6,10 @@ import "../styles/Infoscharacter.css";
 
 const InfosCharacter = () => {
   const [data, setData] = useState();
-  // const [, set] = useState();
-
   const [isLoading, setIsLoading] = useState(false);
 
   const params = useParams();
-  // console.log(params);
   const id = params.characterId;
-  // const { comicId } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {

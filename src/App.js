@@ -27,12 +27,6 @@ function App() {
   const [currentPage, setCurrentPage] = useState(0);
   const [currentPageData, setCurrentPageData] = useState([]);
 
-  // const [isFavorite, setIsFavorite] = useState(false);
-
-  // const hideSearchBar = () => {
-  //   setShowSearchBar(false);
-  // };
-
   const onChangeCurrentPageData = useCallback((pageData) => {
     setCurrentPageData(() => pageData);
   }, []);
@@ -41,13 +35,13 @@ function App() {
     setCurrentPage(() => value);
   }, []);
 
-  const handleTokenAndId = (token, id) => {
-    if (token && id) {
+  const handleTokenAndId = (token, userId) => {
+    if (token && userId) {
       setToken(token);
-      setUserId(id);
+      setUserId(userId);
 
       Cookies.set("token-user", token, { expires: 28 });
-      Cookies.set("userId", id, { expires: 28 });
+      Cookies.set("userId", userId, { expires: 28 });
     } else {
       setToken(null);
       setUserId(null);
@@ -62,7 +56,7 @@ function App() {
       <Router>
         <Header
           token={token}
-          id={userId}
+          userId={userId}
           searchResults={searchResults}
           setSearchResults={setSearchResults}
           handleTokenAndId={handleTokenAndId}
@@ -80,7 +74,7 @@ function App() {
             path="/characters"
             element={
               <Characters
-                id={userId}
+                userId={userId}
                 searchResults={searchResults}
                 currentPage={currentPage}
                 onChangeCurrentPage={onChangeCurrentPage}
@@ -110,7 +104,7 @@ function App() {
             path="/comics"
             element={
               <Comics
-                id={userId}
+                userId={userId}
                 searchResults={searchResults}
                 currentPage={currentPage}
                 onChangeCurrentPage={onChangeCurrentPage}

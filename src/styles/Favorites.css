@@ -2,6 +2,10 @@
   display: flex;
   flex-direction: column;
   row-gap: 20px;
+  background-image: url("../img/personnage_de_fiction.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .selected-wrapper {

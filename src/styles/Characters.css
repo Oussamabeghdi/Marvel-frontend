@@ -10,6 +10,15 @@
   width: 300px;
 }
 
+.characters-container {
+  gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 .wrapper-characters {
   padding-top: 50px;
   display: flex;
@@ -32,7 +41,7 @@
   row-gap: 20px;
 }
 
-.container {
+.characters-container {
   gap: 30px;
   display: flex;
   flex-wrap: wrap;
@@ -88,9 +97,6 @@
 @media screen and (max-width: 740px) {
   .wrapper-characters {
     grid-template-columns: 1fr;
-  }
-
-  .container {
   }
 
   .paginate-characters {

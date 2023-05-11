@@ -1,4 +1,5 @@
 .card-container {
+  padding-top: 50px;
   height: 100vh;
   width: 100vw;
   background: rgb(2, 0, 36);
@@ -21,12 +22,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  column-gap: 2%;
+  column-gap: 10%;
+}
+
+.comic-container {
+  width: 400px;
 }
 
 .comic-title {
   font-size: 22px;
   font-weight: bold;
+  color: white;
+  padding: 1rem;
 }
 
 .comic-image {
@@ -34,30 +41,30 @@
 }
 
 .comic-description {
+  line-height: 1.5rem;
   font-size: 18px;
   font-weight: bold;
-
-  margin: 10px;
-}
-
-.description-container {
-  width: 300px;
-  height: 200px;
-  border: 2px solid black;
-  border-radius: 10px;
-  overflow: hidden;
+  color: white;
 }
 
 @media screen and (max-width: 990px) {
-  .container {
+  .comic-container {
     flex-direction: column;
+    width: 300px;
+    padding-top: 1rem;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .comic-container::-webkit-scrollbar {
+    display: none;
   }
 }
 
 @media screen and (max-width: 900px) {
   .card-container > div {
     flex-direction: column;
-    /* position: relative; */
     display: flex;
     flex-direction: column;
     justify-content: center;

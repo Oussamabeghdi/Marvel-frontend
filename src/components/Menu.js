@@ -2,18 +2,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/Menu.css";
 
-const Menu = ({ token, handleTokenAndId, id, onClose, navbarActive }) => {
+const Menu = ({ token, handleTokenAndId, userId, onClose, navbarActive }) => {
   const navigate = useNavigate();
 
   const handleClickCharacters = () => {
-    if (token) {
+    if (token && userId) {
       navigate("/characters");
     } else {
       navigate("/login");
     }
   };
   const handleClickComics = () => {
-    if (token && id) {
+    if (token && userId) {
       navigate("/comics");
     } else {
       navigate("/login");

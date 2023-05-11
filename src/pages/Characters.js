@@ -12,7 +12,7 @@ const Characters = ({
   currentPageData,
   onChangeCurrentPage,
   onChangeCurrentPageData,
-  id,
+  userId,
 }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -28,7 +28,7 @@ const Characters = ({
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
-        console.log(error.message);
+        console.log(error.response.data.message);
       }
     };
 
@@ -49,10 +49,14 @@ const Characters = ({
     </div>
   ) : (
     <section className="wrapper-characters">
-      <div className="container">
+      <div className="characters-container">
         {currentPageData.map((character) => {
           return (
-            <CharactersCard key={character._id} item={character} id={id} />
+            <CharactersCard
+              key={character._id}
+              item={character}
+              userId={userId}
+            />
           );
         })}
       </div>

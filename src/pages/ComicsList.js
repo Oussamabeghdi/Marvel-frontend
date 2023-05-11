@@ -21,7 +21,7 @@ const ComicsList = () => {
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
-        console.log({ message1: error.message });
+        console.log(error.response.data.message);
       }
     };
     fetchData();
@@ -52,12 +52,15 @@ const ComicsList = () => {
           }
           alt="comics"
         />
-        <div className="container">
-          <p className="comic-title">{data?.title} </p>
-          <div className="description-container">
-            <p className="comic-description">{data?.description} </p>
+        <article className="comic-container">
+          <div>
+            <p className="comic-title">{data?.title} </p>
+            {/* <div className="description-container"> */}
+            <p className="comic-description">
+              {data?.description.replace(/&#39;/g, "'")}
+            </p>
           </div>
-        </div>
+        </article>
       </div>
     </div>
   );

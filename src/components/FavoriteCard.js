@@ -7,11 +7,12 @@ import { Oval } from "react-loader-spinner";
 const FavoriteCard = ({ type, elementId }) => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const currentType = useMemo(() => type?.slice(0, -1), [type]);
-  console.log(currentType);
+  // const currentType = useMemo(() => type?.slice(0, -1), [type]);
+  const currentType = type?.slice(0, -1);
+  // console.log(currentType);
 
   useEffect(() => {
-    (async () => {
+    const fetchData = async () => {
       try {
         const response = await axios.get(
           `https://site--marvel-backend--9gtnl5qyn2yw.code.run/${currentType}/${elementId}`
@@ -19,11 +20,12 @@ const FavoriteCard = ({ type, elementId }) => {
         const data = response.data;
         setData(data);
         setIsLoading(false);
-      } catch (err) {
-        console.error(err);
+      } catch (error) {
+        console.log(error.response.data.message, "ici");
       }
-    })();
-  }, [type, elementId, currentType]);
+    };
+    fetchData();
+  }, [currentType, elementId]);
 
   const picture = useMemo(
     () => data?.thumbnail?.path + "." + data?.thumbnail?.extension,
@@ -50,7 +52,7 @@ const FavoriteCard = ({ type, elementId }) => {
             <p className="character-name">{data?.name || data?.title}</p>
             <img className="image-character" src={picture} alt="heros" />
             <p className="character-description">
-              {data?.description || "Pas de description."}{" "}
+              {data?.description || "Pas de description."}
             </p>
           </div>
         </Link>

@@ -5,11 +5,9 @@ import "../styles/Signup.css";
 
 const Signup = ({ handleTokenAndId }) => {
   const [username, setUsername] = useState("");
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
   const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
@@ -35,7 +33,7 @@ const Signup = ({ handleTokenAndId }) => {
     } catch (error) {
       if (error.response.data.message === "email already used") {
         setErrorMessage(
-          "Cet email est déjà utilisé, veuillez créer un compte avec un email valide."
+          "Cet email est déjà associé à un compte. Veuillez utiliser une autre adresse email ou récupérer votre compte existant."
         );
       }
       if (error.response.data.message === "missing parameters") {
@@ -93,7 +91,7 @@ const Signup = ({ handleTokenAndId }) => {
         {errorMessage && (
           <p
             style={{
-              color: "white",
+              color: "rgb(197, 180, 19)",
               fontWeight: "bold",
             }}
           >

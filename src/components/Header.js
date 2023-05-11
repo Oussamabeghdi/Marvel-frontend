@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = ({
   handleTokenAndId,
-  id,
+  userId,
   token,
   searchResults,
   setSearchResults,
@@ -27,7 +27,7 @@ const Header = ({
         <Menu
           token={token}
           handleTokenAndId={handleTokenAndId}
-          id={id}
+          userId={userId}
           onClose={onCloseNavbar}
           navbarActive={navbarActive}
         />
@@ -43,7 +43,7 @@ const Header = ({
         <Menu
           token={token}
           handleTokenAndId={handleTokenAndId}
-          id={id}
+          userId={userId}
           onClose={onCloseNavbar}
           navbarActive={navbarActive}
         />

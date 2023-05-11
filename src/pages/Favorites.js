@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import FavoriteCard from "../components/FavoriteCard";
 import { Oval } from "react-loader-spinner";
+// import { type } from "@testing-library/user-event/dist/type";
 
 const CHARACTERS = "characters";
 const COMICS = "comics";
@@ -62,12 +63,12 @@ export const Favorites = ({
           id="selected-type"
           className={"selected-type"}
         >
-          {/* <option value="">--Choose your type--</option> */}
+          <option value="">--Choose your type--</option>
           <option value={CHARACTERS}>Characters</option>
           <option value={COMICS}>Comics</option>
         </select>
       </div>
-      <div className="container">
+      <div className="characters-container">
         {favoritesIdData?.length ? (
           favoritesIdData?.map((favoriteId) => (
             <FavoriteCard
@@ -80,15 +81,6 @@ export const Favorites = ({
           <p className="container-text">You don't have any favorites yet.</p>
         )}
       </div>
-      {/*<div className="paginate-characters">*/}
-      {/*    <Paginate*/}
-      {/*        data={favoritesData}*/}
-      {/*        itemsPerPage={16}*/}
-      {/*        onChangeCurrentPageData={onChangeCurrentPageData}*/}
-      {/*        currentPage={currentPage}*/}
-      {/*        onChangeCurrentPage={onChangeCurrentPage}*/}
-      {/*    />*/}
-      {/*</div>*/}
     </div>
   );
 };

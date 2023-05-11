@@ -6,6 +6,7 @@ import "../styles/Login.css";
 const Login = ({ handleTokenAndId }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -26,7 +27,16 @@ const Login = ({ handleTokenAndId }) => {
         navigate("/characters");
       }
     } catch (error) {
-      console.log(error);
+      if (error.response.data.message === "User not found") {
+        setErrorMessage(
+          "L'adresse email ou le mot de passe est incorrect. Veuillez réessayer."
+        );
+      }
+      if (error.response.data.message === "Unauthorized") {
+        setErrorMessage(
+          "L'adresse email ou le mot de passe est incorrect. Veuillez réessayer."
+        );
+      }
     }
   };
 
@@ -39,7 +49,7 @@ const Login = ({ handleTokenAndId }) => {
           <input
             value={email}
             type="email"
-            // placeholder="Email"
+            placeholder="Email"
             onChange={(event) => {
               setEmail(event.target.value);
             }}
@@ -50,7 +60,7 @@ const Login = ({ handleTokenAndId }) => {
           <input
             value={password}
             type="password"
-            // placeholder="Mot de passe"
+            placeholder="Mot de passe"
             onChange={(event) => {
               setPassword(event.target.value);
             }}
@@ -58,6 +68,16 @@ const Login = ({ handleTokenAndId }) => {
         </div>
         <div>
           <input type="submit" value="Se connecter" />
+          {errorMessage && (
+            <p
+              style={{
+                color: "red",
+                fontWeight: "bold",
+              }}
+            >
+              {errorMessage}
+            </p>
+          )}
           <Link to="/signup">
             <p className="span">Pas encore de compte ? Inscris-toi !</p>
           </Link>

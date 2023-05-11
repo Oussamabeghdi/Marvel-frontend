@@ -9,6 +9,7 @@
   align-items: flex-start;
   height: 100vh;
   gap: 30px;
+  margin: auto;
 }
 
 .signup-container h1 {
@@ -33,6 +34,7 @@
 
 form p {
   color: white;
+  font-weight: bold;
   text-decoration: none;
 }
 

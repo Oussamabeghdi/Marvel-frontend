@@ -69,14 +69,6 @@
   color: #808e9b;
 }
 
-.active {
-  height: 40px;
-  width: 40px;
-  border: solid 1px #808e9b;
-  border-radius: 40px;
-  color: #808e9b;
-}
-
 .disabled-page {
   color: #808e9b;
 }

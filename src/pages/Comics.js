@@ -4,7 +4,6 @@ import Paginate from "../components/Paginate";
 import { Oval } from "react-loader-spinner";
 import ComicsCard from "../components/ComicsCard";
 import "../styles/Comics.css";
-// import Paginate from "../components/Paginate";
 
 const Comics = ({
   searchResults,
@@ -12,7 +11,7 @@ const Comics = ({
   onChangeCurrentPage,
   onChangeCurrentPageData,
   currentPage,
-  id,
+  userId,
 }) => {
   const [data, setData] = useState([]);
   const [isloading, setIsloading] = useState(true);
@@ -49,7 +48,7 @@ const Comics = ({
     <section className="wrapper-comics">
       <div className="comics-container">
         {currentPageData.map((item, index) => {
-          return <ComicsCard item={item} key={index} id={id} />;
+          return <ComicsCard item={item} key={index} userId={userId} />;
         })}
       </div>
       <div className="paginate-comics">
