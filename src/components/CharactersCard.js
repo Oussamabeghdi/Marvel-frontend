@@ -56,7 +56,7 @@ const CharactersCard = ({ item, userId }) => {
             <p className="character-name">{item.name}</p>
             <img className="image-character" src={picture} alt="heros" />
             <p className="character-description">
-              {item.description || "Pas de description."}{" "}
+              {item.description || "Pas de description."}
             </p>
           </div>
         </Link>

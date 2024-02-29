@@ -11,7 +11,10 @@
   gap: 30px;
   margin: auto;
 }
-
+.label-for-signup{
+  color: white;
+  margin-bottom: -10px;
+}
 .signup-container h1 {
   text-align: center;
 }

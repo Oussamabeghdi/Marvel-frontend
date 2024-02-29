@@ -31,15 +31,9 @@ const Paginate = ({
   useMemo(() => {
     const pageData = data.slice(startDisplay, endDisplay);
     onChangeCurrentPageData(pageData);
+    console.log(pageData, "");
     return pageData;
-  }, [
-    // itemsPerPage,
-    // currentPage,
-    data,
-    endDisplay,
-    startDisplay,
-    onChangeCurrentPageData,
-  ]);
+  }, [data, endDisplay, startDisplay, onChangeCurrentPageData]);
 
   return (
     <ReactPaginate

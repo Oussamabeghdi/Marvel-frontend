@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useCallback } from "react";
 import Cookies from "js-cookie";
 
+//Pages
 import Characters from "./pages/Characters";
 import InfosCharacter from "./pages/InfosCharacter";
 import Comics from "./pages/Comics";

@@ -45,9 +45,10 @@ const Login = ({ handleTokenAndId }) => {
       <form className="login-container" onSubmit={handleLogin}>
         <h1>Se connecter</h1>
         <div>
-          <label>email</label>
+          <label className="label" htmlFor ="email">Email :</label>
           <input
             value={email}
+            id = "email"
             type="email"
             placeholder="Email"
             onChange={(event) => {
@@ -56,9 +57,10 @@ const Login = ({ handleTokenAndId }) => {
           />
         </div>
         <div>
-          <label>Password</label>
+          <label className="label" htmlFor="password">Password :</label>
           <input
             value={password}
+            id= "password"
             type="password"
             placeholder="Mot de passe"
             onChange={(event) => {

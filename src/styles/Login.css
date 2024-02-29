@@ -1,7 +1,9 @@
 .login-container {
-  background-image: url("../img/marcin-lukasik-uYpOYyJdhRE-unsplash.jpg");
-  background-size: cover;
-  background-position: center;
+  background-image: url("../img/rio-watkins-JhEgldJpAC4-unsplash.jpg");
+  margin: auto;
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position:center;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -9,6 +11,11 @@
   height: 100vh;
   padding-left: 40px;
   gap: 30px;
+}
+
+.label{
+  color: white;
+  margin-bottom: 10px;
 }
 
 .login-container div {

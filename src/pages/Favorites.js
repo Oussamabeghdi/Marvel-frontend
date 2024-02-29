@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import FavoriteCard from "../components/FavoriteCard";
 import { Oval } from "react-loader-spinner";
-// import { type } from "@testing-library/user-event/dist/type";
 
 const CHARACTERS = "characters";
 const COMICS = "comics";
