@@ -37,7 +37,7 @@ const Signup = ({ handleTokenAndId }) => {
         );
       }
       if (error.response.data.message === "missing parameters") {
-        setErrorMessage("Veuillez remplir tous les champs svp!");
+        setErrorMessage("Veuillez remplir tous les champs!");
       }
     }
   };
@@ -46,7 +46,9 @@ const Signup = ({ handleTokenAndId }) => {
     <section>
       <form className="signup-container" onSubmit={handleSignup}>
         <h1>S'inscrire</h1>
-        <label className="label-for-signup" htmlFor="username">Username :</label>
+        <label className="label-for-signup" htmlFor="username">
+          Nom :
+        </label>
         <input
           label="username"
           id="username"
@@ -57,7 +59,9 @@ const Signup = ({ handleTokenAndId }) => {
             setUsername(event.target.value);
           }}
         />
-                <label className="label-for-signup" htmlFor="email">Email :</label>
+        <label className="label-for-signup" htmlFor="email">
+          Email :
+        </label>
 
         <input
           label="email"
@@ -69,7 +73,9 @@ const Signup = ({ handleTokenAndId }) => {
             setEmail(event.target.value);
           }}
         />
-        <label className="label-for-signup" htmlFor="password">Mot de passe :</label>
+        <label className="label-for-signup" htmlFor="password">
+          Mot de passe :
+        </label>
 
         <input
           id="password"
@@ -80,7 +86,9 @@ const Signup = ({ handleTokenAndId }) => {
             setPassword(event.target.value);
           }}
         />
-        <label className="label-for-signup" htmlFor="confirmPassword">Confirmer mot de passe :</label>
+        <label className="label-for-signup" htmlFor="confirmPassword">
+          Confirmer mot de passe :
+        </label>
 
         <input
           id="confirmPassword"
@@ -93,18 +101,22 @@ const Signup = ({ handleTokenAndId }) => {
         />
 
         <input className="signup-btn" type="submit" value="S'inscrire" />
-        {errorMessage && (
-          <p
-            style={{
-              color: "rgb(197, 180, 19)",
-              fontWeight: "bold",
-            }}
-          >
-            {errorMessage}
-          </p>
-        )}
+        <div className="err-message">
+          {errorMessage && (
+            <p
+              style={{
+                color: "red",
+              }}
+            >
+              {errorMessage}
+            </p>
+          )}
+        </div>
+
         <Link to="/login">
-          <h1>Tu as déjà un compte? connecte-toi !</h1>
+          <div className="tu-as-deja-un-cpte">
+            <h1>Tu as déjà un compte? Connecte-toi !</h1>
+          </div>
         </Link>
       </form>
     </section>

@@ -45,10 +45,12 @@ const Login = ({ handleTokenAndId }) => {
       <form className="login-container" onSubmit={handleLogin}>
         <h1>Se connecter</h1>
         <div>
-          <label className="label" htmlFor ="email">Email :</label>
+          <label className="label" htmlFor="email">
+            Email :
+          </label>
           <input
             value={email}
-            id = "email"
+            id="email"
             type="email"
             placeholder="Email"
             onChange={(event) => {
@@ -57,10 +59,12 @@ const Login = ({ handleTokenAndId }) => {
           />
         </div>
         <div>
-          <label className="label" htmlFor="password">Password :</label>
+          <label className="label" htmlFor="password">
+            Password :
+          </label>
           <input
             value={password}
-            id= "password"
+            id="password"
             type="password"
             placeholder="Mot de passe"
             onChange={(event) => {
@@ -69,7 +73,7 @@ const Login = ({ handleTokenAndId }) => {
           />
         </div>
         <div>
-          <input type="submit" value="Se connecter" />
+          <input className="login-btn" type="submit" value="Se connecter" />
           {errorMessage && (
             <p
               style={{

@@ -41,8 +41,8 @@ function App() {
       setToken(token);
       setUserId(userId);
 
-      Cookies.set("token-user", token, { expires: 28 });
-      Cookies.set("userId", userId, { expires: 28 });
+      Cookies.set("token-user", token, { expires: 8 });
+      Cookies.set("userId", userId, { expires: 8 });
     } else {
       setToken(null);
       setUserId(null);

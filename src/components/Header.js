@@ -32,11 +32,13 @@ const Header = ({
           navbarActive={navbarActive}
         />
       </div>
-      {token ? <Searchbar
-      
-        searchResults={searchResults}
-        setSearchResults={setSearchResults}
-      /> :null}
+
+      {token && userId ? (
+        <Searchbar
+          searchResults={searchResults}
+          setSearchResults={setSearchResults}
+        />
+      ) : null}
       <div onClick={onOpenNavbar} className="open-navbar-btn">
         <FontAwesomeIcon icon="bars" size="xl" />
       </div>

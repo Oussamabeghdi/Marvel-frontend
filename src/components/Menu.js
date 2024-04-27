@@ -20,6 +20,14 @@ const Menu = ({ token, handleTokenAndId, userId, onClose, navbarActive }) => {
     }
   };
 
+  const handleGoToFavorites = () => {
+    if (token && userId) {
+      navigate("/favorites");
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
     <div
       className={
@@ -40,9 +48,23 @@ const Menu = ({ token, handleTokenAndId, userId, onClose, navbarActive }) => {
       >
         <li onClick={handleClickCharacters}>Characters</li>
         <li onClick={handleClickComics}>Comics</li>
+        <li onClick={handleGoToFavorites}> Favoris</li>
+        {/* 
+        <Link
+          className="menu-link"
+          to={token && userId ? "/favorites" : "/login"}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          Favorites
+        </Link> */}
+
         <li>
-          <Link className="menu-link" to="/favorites">
-            Favorites
+          <Link className="menu-link" to="/login">
+            Connexion
           </Link>
         </li>
         {token ? (
@@ -53,18 +75,13 @@ const Menu = ({ token, handleTokenAndId, userId, onClose, navbarActive }) => {
               navigate("/");
             }}
           >
-            Se déconnecter
+            Déconnexion
           </li>
         ) : (
           <>
             <li>
               <Link className="menu-link" to="/signup">
                 S'inscrire
-              </Link>
-            </li>
-            <li>
-              <Link className="menu-link" to="/login">
-                Se connecter
               </Link>
             </li>
           </>
