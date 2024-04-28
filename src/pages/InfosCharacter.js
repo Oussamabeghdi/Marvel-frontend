@@ -54,7 +54,7 @@ const InfosCharacter = () => {
           alt=""
         />
       </div>
-      <h1>Liste des comics :</h1>
+      <h1 style={{ letterSpacing: "1px" }}>Liste des comics :</h1>
       <div className="comic-list">
         {data?.comics?.map((item, id) => (
           <div className="comic-card" key={id}>
@@ -70,7 +70,9 @@ const InfosCharacter = () => {
                 alt={`item-${id}`}
               />
             )}
-            <span>{item?.title}</span>
+            <span style={{ textAlign: "center", letterSpacing: "1px" }}>
+              {item?.title.replace("#", "edition :")}
+            </span>
           </div>
         ))}
       </div>

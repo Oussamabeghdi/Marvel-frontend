@@ -33,7 +33,7 @@ const Signup = ({ handleTokenAndId }) => {
     } catch (error) {
       if (error.response.data.message === "email already used") {
         setErrorMessage(
-          "Cet email est déjà associé à un compte. Veuillez utiliser une autre adresse email ou récupérer votre compte existant."
+          "Cette adresse email est déjà associée à un compte. Veuillez utiliser une autre adresse email ou récupérer votre compte existant."
         );
       }
       if (error.response.data.message === "missing parameters") {
@@ -101,16 +101,8 @@ const Signup = ({ handleTokenAndId }) => {
         />
 
         <input className="signup-btn" type="submit" value="S'inscrire" />
-        <div className="err-message">
-          {errorMessage && (
-            <p
-              style={{
-                color: "red",
-              }}
-            >
-              {errorMessage}
-            </p>
-          )}
+        <div className={`err-message ${errorMessage ? "" : "hidden"}`}>
+          <p>{errorMessage}</p>
         </div>
 
         <Link to="/login">

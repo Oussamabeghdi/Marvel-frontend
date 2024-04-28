@@ -64,18 +64,11 @@
 .menu-mobile {
   display: none;
 }
-/* @media (max-width: 794px) and (min-width: 765px) {
-  .header-container {
-    width: 90%;
-  }
-} */
+
 @media (max-width: 1400px) {
   .input-search {
     width: 200px;
   }
-  /* .header-container {
-    width: 90%;
-  } */
 }
 /* ancienne valeur de max-width:765px */
 @media screen and (max-width: 835px) {

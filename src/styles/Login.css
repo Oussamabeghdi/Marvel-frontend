@@ -1,7 +1,7 @@
 .login-container {
   background-image: url("../img/rio-watkins-JhEgldJpAC4-unsplash.jpg");
   margin: auto;
-  height: 600px;
+  /* height: 600px; */
   background-size: cover;
   /* background-repeat: no-repeat; */
   background-position: center;
@@ -12,15 +12,19 @@
   flex-direction: column;
   align-items: flex-start;
   height: 100vh;
-  padding-left: 40px;
+  padding: 40px;
   gap: 30px;
 }
+
 .login {
+  gap: 30px;
+  /* max-width: 1200px; */
   /* background-image: url("../img/rio-watkins-JhEgldJpAC4-unsplash.jpg");
+  width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  width: 100%; */
+  */
 }
 .label {
   color: white;
@@ -45,7 +49,7 @@
   padding: 5px;
   width: 300px;
   height: 40px;
-  border-radius: 5px;
+  border-radius: 7px;
   background-color: transparent;
   color: white;
   font-weight: 40px;
@@ -69,4 +73,9 @@ form p {
   margin-top: 30px;
   display: flex;
   align-items: center;
+}
+@media (max-width: 355px) {
+  .login-container div input {
+    width: 100px;
+  }
 }

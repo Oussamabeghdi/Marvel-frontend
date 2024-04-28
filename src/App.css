@@ -14,7 +14,6 @@ body {
   justify-content: space-between;
   min-height: 100vh;
   background: black;
-  /* margin: 0 auto; */
 }
 
 .loading-wrapper {

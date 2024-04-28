@@ -5,25 +5,23 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding-left: 40px;
+  padding: 60px;
   align-items: flex-start;
   height: 100vh;
   gap: 20px;
-  /* margin: auto; */
 }
 .label-for-signup {
   color: white;
-  /* margin-bottom: -10px; */
   letter-spacing: 1px;
 }
 .signup-container h1 {
-  text-align: center;
+  letter-spacing: 1px;
   font-weight: 400;
 }
 
 .signup-container input {
   height: 40px;
-  border-radius: 8px;
+  border-radius: 7px;
   width: 300px;
   background-color: transparent;
   padding: 5px;
@@ -54,12 +52,44 @@ input:focus {
 }
 .tu-as-deja-un-cpte :hover {
   color: chartreuse;
-  margin: 0;
 }
 .err-message {
   margin-bottom: 30px;
-  height: 50px;
-  width: 400px;
+  height: 90px;
+  width: 340px;
   display: flex;
   flex-wrap: wrap;
+  letter-spacing: 1px;
+  /* display: none; */
+}
+.hidden {
+  display: none;
+}
+.err-message p {
+  color: red;
+}
+@media (max-width: 456px) {
+  section div {
+    width: 100%;
+  }
+  .signup-container input {
+    width: 80%;
+  }
+  .signup-container p {
+    width: 100%;
+  }
+  .signup-container {
+    width: 100%;
+  }
+  .err-message {
+    width: 100%;
+    margin-bottom: 35px;
+  }
+  .err-message p {
+    color: rgb(189, 177, 173);
+    font-size: 16px;
+  }
+  .tu-as-deja-un-cpte h1 {
+    font-size: 16px;
+  }
 }

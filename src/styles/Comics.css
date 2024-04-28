@@ -39,9 +39,11 @@
 
 .comics-image {
   object-fit: cover;
+  object-position: top;
   border: 1px solid white;
   width: 160px;
   height: 160px;
+  transition: transform 2s;
 }
 
 .comics-title {
@@ -69,7 +71,9 @@
 .comics-image:hover ~ .comics-description {
   display: block;
 }
-
+.comics-image:hover {
+  transform: translate(5px) scale(1.1);
+}
 .comic-list {
   height: 100%;
 }

@@ -1,7 +1,7 @@
 .card-container {
-  padding-top: 50px;
-  height: 100vh;
-  width: 100vw;
+  padding: 50px;
+  /* height: 100vh;
+  width: 100vw; */
   background: rgb(2, 0, 36);
   background: linear-gradient(
     90deg,
@@ -37,7 +37,12 @@
 }
 
 .comic-image {
-  box-shadow: 10px 5px 5px tomato;
+  box-shadow: 10px 5px tomato;
+  transition: transform 1s;
+}
+
+.comic-image:hover {
+  transform: scale(1.1);
 }
 
 .comic-description {

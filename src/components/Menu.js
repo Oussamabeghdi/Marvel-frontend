@@ -46,9 +46,14 @@ const Menu = ({ token, handleTokenAndId, userId, onClose, navbarActive }) => {
         className={navbarActive ? "menu nav-active-flex" : "menu"}
         onClick={onClose}
       >
-        <li onClick={handleClickCharacters}>Characters</li>
-        <li onClick={handleClickComics}>Comics</li>
-        <li onClick={handleGoToFavorites}> Favoris</li>
+        {token ? (
+          <>
+            <li onClick={handleClickCharacters}>Characters</li>
+            <li onClick={handleClickComics}>Comics</li>
+            <li onClick={handleGoToFavorites}> Favoris</li>
+          </>
+        ) : null}
+
         {/* 
         <Link
           className="menu-link"

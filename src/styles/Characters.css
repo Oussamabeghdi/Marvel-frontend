@@ -68,6 +68,9 @@
 .image-character:hover ~ .character-description {
   display: block;
 }
+.image-character:hover {
+  transform: scale(1.1);
+}
 
 .character-name {
   font-size: 18px;
@@ -81,6 +84,7 @@
   border: 1px solid white;
   width: 160px;
   height: 160px;
+  transition: transform 2s;
 }
 
 .paginate-characters {
