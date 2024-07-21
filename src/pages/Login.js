@@ -46,7 +46,7 @@ const Login = ({ handleTokenAndId }) => {
         <h1>Se connecter</h1>
         <div>
           <label className="label" htmlFor="email">
-            Email :
+            {/* Email */}
           </label>
           <input
             value={email}
@@ -60,7 +60,7 @@ const Login = ({ handleTokenAndId }) => {
         </div>
         <div>
           <label className="label" htmlFor="password">
-            Password :
+            {/* Password */}
           </label>
           <input
             value={password}

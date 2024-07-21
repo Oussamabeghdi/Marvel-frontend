@@ -14,11 +14,16 @@ import Login from "./pages/Login";
 //components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ButtonScrollToTop from "./components/ButtonScrollToTop";
+
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faBars, faHeart, faXmark } from "@fortawesome/free-solid-svg-icons";
+// import { all } from "@awesome.me/kit-KIT_CODE/icons";
+
+import { faBars, faHeart, faXmark, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { Favorites } from "./pages/Favorites";
 
-library.add(faBars, faHeart, faXmark);
+library.add(faBars, faHeart, faXmark, faMagnifyingGlass);
+// library.add(...all);
 
 function App() {
   const [token, setToken] = useState(Cookies.get("token-user" || null));
@@ -67,10 +72,7 @@ function App() {
         />
 
         <Routes>
-          <Route
-            path="/"
-            element={<Login handleTokenAndId={handleTokenAndId} />}
-          />
+          <Route path="/" element={<Login handleTokenAndId={handleTokenAndId} />} />
           <Route
             path="/characters"
             element={
@@ -85,14 +87,8 @@ function App() {
             }
           />
 
-          <Route
-            path="/signup"
-            element={<Signup handleTokenAndId={handleTokenAndId} />}
-          />
-          <Route
-            path="/login"
-            element={<Login handleTokenAndId={handleTokenAndId} />}
-          />
+          <Route path="/signup" element={<Signup handleTokenAndId={handleTokenAndId} />} />
+          <Route path="/login" element={<Login handleTokenAndId={handleTokenAndId} />} />
 
           <Route
             path="/character/:characterId"
@@ -126,8 +122,8 @@ function App() {
             }
           />
         </Routes>
-
-        <Footer />
+        <ButtonScrollToTop />
+        <Footer token={token} setToken={setToken} />
       </Router>
     </div>
   );

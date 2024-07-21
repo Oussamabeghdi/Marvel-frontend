@@ -1,0 +1,32 @@
+.scroll-to-top {
+  position: fixed;
+  bottom: 46px;
+  right: 20px;
+}
+
+.scroll-to-top button {
+  background-color: #f5f4f8;
+  color: rgb(1, 1, 1);
+  font-weight: bold;
+  border: 1px solid red;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.4s;
+  opacity: 0.7;
+}
+
+.scroll-to-top button:hover {
+  opacity: 1;
+}
+@media (max-width: 640px) {
+  .scroll-to-top {
+    position: fixed;
+    bottom: 90px;
+    right: 45%;
+  }
+  .scroll-to-top button {
+    /* border-radius: 25%; */
+  }
+}

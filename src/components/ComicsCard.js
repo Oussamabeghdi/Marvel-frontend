@@ -47,23 +47,18 @@ const ComicsCard = ({ item, userId }) => {
     }
   };
   return (
-    // <article className="comics">
     <section>
       <div className="card-wrapper">
         <Link className="character-link" to={`/comic/${item._id}`}>
           <div className="details-wrapper">
-            <p className="comics-title ">{item.title}</p>
+            <p className="comics-title ">{item.title.replace("#", "edition :")}</p>
 
-            {/* </div> */}
-            {/* <div className="comics-image-container"> */}
             <img
               className="comics-image"
               src={item.thumbnail.path + "." + item.thumbnail.extension}
               alt="comics "
             />
-            <p className="comics-description ">
-              {item.description || "Pas de description."}
-            </p>
+            <p className="comics-description ">{item.description || "Pas de description."}</p>
           </div>
         </Link>
         <Heart
@@ -71,11 +66,6 @@ const ComicsCard = ({ item, userId }) => {
           style={{ fill: isFavorite ? "red" : "white", cursor: "pointer" }}
           onClick={isFavorite ? onRemoveFavorite : onAddFavorite}
         />
-        {/* <button
-        onClick={isFavorite ? onRemoveFavorite : onAddFavoriteInLocalStorage}
-      >
-        <FontAwesomeIcon icon="heart" color={isFavorite ? "red" : "gray"} />
-      </button> */}
       </div>
     </section>
   );

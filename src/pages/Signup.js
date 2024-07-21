@@ -46,55 +46,47 @@ const Signup = ({ handleTokenAndId }) => {
     <section>
       <form className="signup-container" onSubmit={handleSignup}>
         <h1>S'inscrire</h1>
-        <label className="label-for-signup" htmlFor="username">
-          Nom :
-        </label>
+        <label className="label-for-signup" htmlFor="username"></label>
         <input
           label="username"
           id="username"
           value={username}
           type="text"
-          // placeholder="username"
+          placeholder="Nom"
           onChange={(event) => {
             setUsername(event.target.value);
           }}
         />
-        <label className="label-for-signup" htmlFor="email">
-          Email :
-        </label>
+        <label className="label-for-signup" htmlFor="email"></label>
 
         <input
           label="email"
           id="email"
           value={email}
           type="mail"
-          // placeholder="Email"
+          placeholder="Email"
           onChange={(event) => {
             setEmail(event.target.value);
           }}
         />
-        <label className="label-for-signup" htmlFor="password">
-          Mot de passe :
-        </label>
+        <label className="label-for-signup" htmlFor="password"></label>
 
         <input
           id="password"
           value={password}
           type="password"
-          // placeholder="Mot de passe"
+          placeholder="Mot de passe"
           onChange={(event) => {
             setPassword(event.target.value);
           }}
         />
-        <label className="label-for-signup" htmlFor="confirmPassword">
-          Confirmer mot de passe :
-        </label>
+        <label className="label-for-signup" htmlFor="confirmPassword"></label>
 
         <input
           id="confirmPassword"
           value={confirmPassword}
           type="password"
-          // placeholder="Confirmer votre mot de passe"
+          placeholder="Confirmer mot de passe"
           onChange={(event) => {
             setConfirmPassword(event.target.value);
           }}
