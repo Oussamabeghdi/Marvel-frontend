@@ -44,7 +44,8 @@ const ComicsList = () => {
       <div>
         <img
           className="comic-image"
-          src={data?.thumbnail.path + "/portrait_uncanny" + "." + data?.thumbnail.extension}
+          src={`${data?.thumbnail.path}/portrait_uncanny.${data?.thumbnail.extension}`}
+          // src={data?.thumbnail.path + "/portrait_uncanny" + "." + data?.thumbnail.extension}
           alt="comics"
         />
         <article className="comic-container">
