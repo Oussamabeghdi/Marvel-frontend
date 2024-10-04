@@ -50,11 +50,14 @@ const Login = ({ token, handleTokenAndId }) => {
 
   return (
     <section className="login">
-      {successMessage && (
-        <div className="successMessage">
-          <p>{successMessage}</p>
-        </div>
-      )}
+      <div className="successMessage-container">
+        {successMessage && (
+          <div className="successMessage">
+            <p>{successMessage}</p>
+          </div>
+        )}
+      </div>
+
       <form className="login-container" onSubmit={handleLogin}>
         <h1>Se connecter</h1>
         <div>

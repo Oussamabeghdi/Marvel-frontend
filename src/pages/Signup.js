@@ -33,9 +33,7 @@ const Signup = ({ handleTokenAndId }) => {
       if (response.data.token) {
         handleTokenAndId(response.data.token, response.data._id);
 
-        setSuccessMessage(
-          "Félicitation! Votre inscription a été enregistrée avec succès! Vous pouvez maintenant vous connecter."
-        );
+        setSuccessMessage("Félicitation! Votre inscription a été enregistrée avec succès! ");
         setTimeout(() => {
           navigate("/login");
         }, 1000);
@@ -58,9 +56,12 @@ const Signup = ({ handleTokenAndId }) => {
   return (
     <section className="register-container">
       <div className="signup-container">
-        <div className="erreurMessage">
-          <p style={{ color: "white" }}>{successMessage} </p>
-        </div>
+        {successMessage && (
+          <div className="sucessMessage-container">
+            <p className="successMessage-subscribe">{successMessage} </p>
+          </div>
+        )}
+
         <form onSubmit={handleSignup}>
           <h1>S'inscrire</h1>
           <label className="label-for-signup" htmlFor="username"></label>

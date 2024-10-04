@@ -1,12 +1,8 @@
 .login-container {
-  background-image: url("../img/rio-watkins-JhEgldJpAC4-unsplash.jpg");
   margin: auto;
   /* height: 600px; */
-  background-size: cover;
   /* background-repeat: no-repeat; */
-  background-position: center;
   /* background-position-x: left; */
-  background-position-y: top;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -17,10 +13,13 @@
 }
 
 .login {
-  gap: 30px;
+  background-image: url("../img/rio-watkins-JhEgldJpAC4-unsplash.jpg");
+  background-size: cover;
+  background-position: center;
+  background-position-y: top;
+  /* gap: 30px; */
 }
 /* .label {
-  color: white;
   margin-bottom: 10px;
 } */
 
@@ -60,21 +59,25 @@
   color: red;
   font-weight: bold;
 }
-.successMessage {
-  height: 40px;
+.successMessage-container {
+  padding: 20px;
   margin: 0 auto;
+}
+.successMessage {
+  padding: 5px;
+  height: 30px;
   width: 300px;
-  color: rgb(255, 255, 255);
+  border: 3px solid green;
+  background-color: aliceblue;
+  color: rgb(20, 14, 14);
+
+  text-align: center;
+  margin: 0 auto;
   font-weight: bold;
 }
 .hidden {
   display: none;
 }
-/* form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
 
 .link-to-subscribe {
   width: 300px;
@@ -88,12 +91,6 @@
   text-decoration: underline;
 }
 @media (max-width: 430px) {
-  /* .login-container div {
-    width: 20%;
-  } */
-  /* .link-to-subscribe {
-    width: 90%;
-    } */
   .login-container {
     display: flex;
     justify-content: center;
