@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.d74099e7.css",
-    "main.js": "/static/js/main.e241242d.js",
+    "main.css": "/static/css/main.a80909cb.css",
+    "main.js": "/static/js/main.f64780a1.js",
     "static/media/rio-watkins-JhEgldJpAC4-unsplash.jpg": "/static/media/rio-watkins-JhEgldJpAC4-unsplash.476b4aa4dce94eef0d24.jpg",
     "static/media/format-arw-PXjQaGxi4JA-unsplash.jpg": "/static/media/format-arw-PXjQaGxi4JA-unsplash.f4852c094fefb2043c6f.jpg",
     "static/media/fond-decran-marvel.jpg": "/static/media/fond-decran-marvel.e7e1ad0d991523862da4.jpg",
@@ -9,11 +9,11 @@
     "static/media/logo.png": "/static/media/logo.74d959e2ebc32e4a5ee4.png",
     "index.html": "/index.html",
     "static/media/heart.svg": "/static/media/heart.658187292778aaaf54e63a804b3a0fef.svg",
-    "main.d74099e7.css.map": "/static/css/main.d74099e7.css.map",
-    "main.e241242d.js.map": "/static/js/main.e241242d.js.map"
+    "main.a80909cb.css.map": "/static/css/main.a80909cb.css.map",
+    "main.f64780a1.js.map": "/static/js/main.f64780a1.js.map"
   },
   "entrypoints": [
-    "static/css/main.d74099e7.css",
-    "static/js/main.e241242d.js"
+    "static/css/main.a80909cb.css",
+    "static/js/main.f64780a1.js"
   ]
 }
