@@ -25,9 +25,7 @@
   /* text-decoration: underline; */
   margin: O 200px;
 }
-.menu-list-footer,
-li,
-a {
+.menu-list-footer > li > a {
   color: rgb(185, 180, 180);
   font-size: 13px;
 }

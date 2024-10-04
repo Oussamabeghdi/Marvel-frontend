@@ -51,7 +51,7 @@ const ComicsCard = ({ item, userId }) => {
       <div className="card-wrapper">
         <Link className="character-link" to={`/comic/${item._id}`}>
           <div className="details-wrapper">
-            <p className="comics-title ">{item.title.replace("#", "edition :")}</p>
+            <p className="comics-title ">{item.title.replace("#", "edition ")}</p>
 
             <img
               className="comics-image"

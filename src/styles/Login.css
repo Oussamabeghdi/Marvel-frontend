@@ -18,18 +18,11 @@
 
 .login {
   gap: 30px;
-  /* max-width: 1200px; */
-  /* background-image: url("../img/rio-watkins-JhEgldJpAC4-unsplash.jpg");
-  width: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  */
 }
-.label {
+/* .label {
   color: white;
   margin-bottom: 10px;
-}
+} */
 
 .login-container div {
   display: flex;
@@ -40,8 +33,9 @@
 }
 
 .login-btn {
-  /* background-color: red;
-  color: white; */
+  /* background-color: red;*/
+
+  /* color: rgb(175, 207, 88); */
   letter-spacing: 1px;
 }
 
@@ -60,22 +54,49 @@
   letter-spacing: 1px;
   text-align: center;
 }
-
+.errorMessage {
+  height: 40px;
+  width: 300px;
+  color: red;
+  font-weight: bold;
+}
+.successMessage {
+  height: 40px;
+  margin: 0 auto;
+  width: 300px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
+.hidden {
+  display: none;
+}
 /* form {
   display: flex;
   justify-content: center;
   align-items: center;
 } */
 
-form p {
+.link-to-subscribe {
+  width: 300px;
+  height: 40px;
   color: white;
-  font-size: 20px;
+  font-size: 16px;
   margin-top: 30px;
-  display: flex;
-  align-items: center;
 }
-@media (max-width: 355px) {
-  .login-container div input {
-    width: 100px;
+.link-to-subscribe p {
+  margin: 0 auto;
+  text-decoration: underline;
+}
+@media (max-width: 430px) {
+  /* .login-container div {
+    width: 20%;
+  } */
+  /* .link-to-subscribe {
+    width: 90%;
+    } */
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

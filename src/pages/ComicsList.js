@@ -26,6 +26,24 @@ const ComicsList = () => {
     };
     fetchData();
   }, [comicId]);
+  // const translateDescription = async () => {
+  //   if (!data.description) return;
+  //   setIsTranslating(true);
+  //   try {
+  //     const response = await axios.post(
+  //       "https://api.cognitive.microsofttranslator.com/translate", // Remplacez par l'URL de l'API de traduction
+  //       {
+  //         text: data.description,
+  //         targetLanguage: "fr", // Traduire vers le français (ou une autre langue)
+  //       }
+  //     );
+  //     setTranslatedDescription(response.data.translatedText);
+  //   } catch (error) {
+  //     console.error("Erreur lors de la traduction :", error);
+  //   } finally {
+  //     setIsTranslating(false);
+  //   }
+  // };
 
   return isLoading ? (
     <div className="loading-wrapper">
@@ -50,9 +68,17 @@ const ComicsList = () => {
         />
         <article className="comic-container">
           <div>
-            <p className="comic-title">{data?.title.replace("#", "edition :")}</p>
+            <p className="comic-title">{data?.title && data.title.replace(/#/g, "Issue# : ")}</p>
             <p className="comic-description">
-              {data?.description.replace(/&#39;/g, "'").replace("<br>", "")}
+              {data.description ? (
+                data?.description
+                  .replace(/&ndash;/g, "-")
+                  .replace(/&#39;/g, "'")
+                  .replace(/<br>/g, "")
+                  .replace(/<br\/>/g, "")
+              ) : (
+                <div>Désolé ! Pas de description</div>
+              )}
             </p>
           </div>
         </article>

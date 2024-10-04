@@ -1,28 +1,27 @@
-.signup-container {
+.register-container {
   background-image: url("../img/format-arw-PXjQaGxi4JA-unsplash.jpg");
   background-size: cover;
   background-position: center;
+}
+.signup-container form {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 60px;
+  padding: 0 0 0 60px;
   align-items: flex-start;
   height: 100vh;
+  width: 360px;
   gap: 15px;
 }
-.label-for-signup {
-  color: white;
-  letter-spacing: 1px;
-}
+
 .signup-container h1 {
   letter-spacing: 1px;
-  font-weight: 400;
 }
 
 .signup-container input {
+  width: 300px;
   height: 40px;
   border-radius: 7px;
-  width: 300px;
   background-color: transparent;
   padding: 5px;
 }
@@ -50,46 +49,52 @@ input:focus {
 .signup-btn:hover {
   transition: background-color 2s;
 }
+.tu-as-deja-un-cpte {
+  width: 300px;
+  height: 40px;
+}
+.tu-as-deja-un-cpte p {
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+  text-decoration: underline;
+}
 .tu-as-deja-un-cpte :hover {
   color: chartreuse;
 }
 .err-message {
   margin-bottom: 30px;
   height: 90px;
-  width: 340px;
-  display: flex;
-  flex-wrap: wrap;
-  letter-spacing: 1px;
-  /* display: none; */
+  width: 300px;
 }
 .hidden {
   display: none;
 }
 .err-message p {
-  color: red;
+  display: flex;
+  flex-wrap: wrap;
+  letter-spacing: 1px;
+  justify-content: center;
+  font-size: 16px;
+  color: rgb(246, 240, 240);
+  text-align: justify;
+  border: 1px solid white;
+  border-radius: 3px;
+  padding: 3px;
 }
-@media (max-width: 456px) {
-  section div {
+@media (max-width: 429px) {
+  .signup-container form {
+    display: flex;
     width: 100%;
+    align-items: center;
+    padding: 0;
   }
-  .signup-container input {
-    width: 80%;
+  .tu-as-deja-un-cpte {
+    font-size: 16px;
+    text-align: center;
   }
-  .signup-container p {
-    width: 100%;
-  }
-  .signup-container {
-    width: 100%;
-  }
-  .err-message {
-    width: 100%;
-    margin-bottom: 35px;
-  }
+
   .err-message p {
     color: rgb(189, 177, 173);
-    font-size: 16px;
-  }
-  .tu-as-deja-un-cpte h1 {
-    font-size: 16px;
   }
 }

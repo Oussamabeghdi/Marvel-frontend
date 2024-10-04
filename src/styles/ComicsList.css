@@ -1,15 +1,18 @@
 .card-container {
-  padding: 50px;
-  /* height: 100vh;
-  width: 100vw; */
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
+  /* width: 600px;
+  height: 300px;
+  border: 2px solid white; */
+  padding: 30px;
+  min-height: 100%;
+  /* width: 100vw; */
+  /* background: rgb(2, 0, 36); */
+  /* background: linear-gradient(
     90deg,
     rgba(2, 0, 36, 1) 0%,
     rgba(121, 120, 9, 0.039675245098039214) 78%,
     rgba(0, 159, 255, 0) 100%
-  );
-  background: rgb(36, 2, 0);
+  ); */
+  /* background: rgb(36, 2, 0); */
   background: linear-gradient(
     90deg,
     rgba(36, 2, 0, 0) 0%,
@@ -27,17 +30,24 @@
 
 .comic-container {
   width: 400px;
+  /* height: 100px; */
+  /* border: 2px solid white; */
 }
-
+.comic-container > div {
+}
 .comic-title {
   font-size: 22px;
   font-weight: bold;
   color: white;
   padding: 1rem;
+  text-align: center;
+  text-decoration: underline;
 }
 
 .comic-image {
-  box-shadow: 10px 5px tomato;
+  border: 1px solid white;
+  border-radius: 5px;
+  /* box-shadow: 10px 5px tomato; */
   transition: transform 1s;
 }
 
@@ -47,27 +57,23 @@
 
 .comic-description {
   line-height: 1.5rem;
-  font-size: 18px;
+  /* min-width: 420px; */
+
+  font-size: 16px;
   font-weight: bold;
   color: white;
+  text-align: justify;
 }
 
-@media screen and (max-width: 990px) {
-  .comic-container {
-    flex-direction: column;
-    width: 300px;
-    padding-top: 1rem;
-    overflow-y: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  .comic-container::-webkit-scrollbar {
-    display: none;
-  }
+.comic-description div {
+  /* width: 300px; */
+  height: 20px;
+  display: flex;
+  justify-content: center;
 }
+/* @media screen and (max-width: 990px) { */
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 700px) {
   .card-container > div {
     flex-direction: column;
     display: flex;
@@ -76,5 +82,20 @@
     align-items: center;
     height: 100%;
     row-gap: 20px;
+  }
+
+  .comic-container {
+    flex-direction: column;
+    width: 300px;
+    padding-top: 1rem;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .comic-description {
+    width: 100%;
+  }
+  .comic-container::-webkit-scrollbar {
+    display: none;
   }
 }

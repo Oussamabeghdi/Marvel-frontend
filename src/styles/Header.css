@@ -1,18 +1,14 @@
 .header-container {
   display: flex;
   justify-content: space-between;
+  /* justify-content: space-around; */
   align-items: center;
-  padding: 20px 30px 20px 20px;
+  padding: 20px;
   height: 100px;
   box-sizing: border-box;
-  background-color: black;
+  /* background-color: rgb(11, 2, 11); */
+  border-bottom: 1px solid rgb(57, 57, 57);
 }
-/* .menu-header {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-} */
-
 .header-btn {
   display: flex;
   justify-content: center;
@@ -37,6 +33,23 @@
   display: inline;
   position: relative;
   width: 300px;
+  margin: 0 15px 0 0;
+}
+.suggestions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-height: 600px;
+  width: 300px;
+  border: 1px solid rgb(241, 234, 234);
+  position: absolute;
+  z-index: 2;
+  background-color: #ffffff;
+  /* padding: 5px; */
+}
+.suggestion-item {
+  cursor: pointer;
+  color: rgb(35, 33, 33);
 }
 .input-search {
   width: 100%;
@@ -61,8 +74,8 @@
 }
 
 .header-logo img {
-  margin: 1rem 1rem;
-  width: 100px;
+  /* margin: 1rem 1rem; */
+  max-width: 100px;
   height: 60px;
   object-fit: cover;
   border-radius: 10px;
@@ -80,27 +93,18 @@
   display: none;
 }
 
-/* @media (max-width: 1400px) {
-  .searchbar {
-    width: 200px;
-  }
-
-  .input-search {
-    width: 100%;
-  }
-} */
 /* ancienne valeur de max-width:765px */
-@media screen and (max-width: 835px) {
+@media screen and (max-width: 880px) {
   .menu-desktop {
     display: none;
   }
   .header-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    /* padding: 0 20px; */
   }
   .searchbar {
     width: 180px;
-    margin: 0 20px 0 0;
   }
 
   .input-search {
@@ -118,5 +122,12 @@
 
   .open-navbar-btn {
     display: block;
+    padding: 0 20px;
+  }
+}
+@media screen and (max-width: 392px) {
+  .header-logo img {
+    width: 80%;
+    height: 60%;
   }
 }

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap"); */
 
 * {
   box-sizing: border-box;
@@ -14,7 +14,7 @@ body {
   justify-content: space-between;
   min-height: 100vh;
   min-width: 360px;
-  background: black;
+  background: rgb(11, 2, 11);
 }
 
 .loading-wrapper {
@@ -28,9 +28,10 @@ a {
 }
 
 h1 {
-  font-size: 20px;
+  font-size: 26px;
   color: white;
 }
+
 .login .searchbar {
   display: none;
 }

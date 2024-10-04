@@ -15,27 +15,47 @@
 }
 
 .navbar-wrapper ul li {
-  padding: 0 15px;
+  height: 40px;
+  /* padding: 0 15px; */
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   cursor: pointer;
-  letter-spacing: 1px;
-  /* text-align: center; */
+  letter-spacing: 1.3px;
 }
-
+.navbar-wrapper li {
+  padding: 0 10px;
+  margin: 0 5px;
+  border-radius: 5px;
+  min-width: 16%;
+}
+.navbar-wrapper ul li:hover {
+  height: 40px;
+  background-color: rgb(58, 54, 54);
+  border-color: transparent;
+}
 .mobile-close-btn {
   display: none;
 }
-
+.logout-btn {
+  font-size: small;
+}
 .menu-link {
   color: white;
   text-decoration: none;
-  /* width: 100px; */
 }
+
+.button-go-to-profil span {
+  letter-spacing: 1px;
+  color: white;
+}
+.user {
+  margin-left: 3px;
+}
+
 /* ancienne valeur de max-width:765px */
-@media (max-width: 835px) {
+@media (max-width: 880px) {
   .navbar-wrapper {
     position: absolute;
     top: 0;

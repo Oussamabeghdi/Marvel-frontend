@@ -18,10 +18,6 @@ const Footer = ({ token, setToken }) => {
           <MenuFooter token={token} setToken={setToken} />
         </>
       </div>
-      {/* <div className="div-footer-liens-fb-insta"> */}
-      {/* <FontAwesomeIcon icon="fa-brands fa-facebook" />
-          <FontAwesomeIcon icon="fa-brands fa-instagram" /> */}
-      {/* </div> */}
     </footer>
   );
 };

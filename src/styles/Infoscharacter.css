@@ -1,20 +1,16 @@
 .infos-container {
+  /* width: 100%; */
+  /* max-width: 100%; */
+  overflow: hidden;
+  box-sizing: border-box;
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(
-    90deg,
-    hsla(350, 73%, 44%, 1) 0%,
-    hsla(274, 65%, 12%, 1) 100%
-  );
+  background: linear-gradient(90deg, hsla(350, 73%, 44%, 1) 0%, hsla(274, 65%, 12%, 1) 100%);
 
-  background: -moz-linear-gradient(
-    90deg,
-    hsla(350, 73%, 44%, 1) 0%,
-    hsla(274, 65%, 12%, 1) 100%
-  );
+  background: -moz-linear-gradient(90deg, hsla(350, 73%, 44%, 1) 0%, hsla(274, 65%, 12%, 1) 100%);
 
   background: -webkit-linear-gradient(
     90deg,
@@ -26,13 +22,9 @@
   min-height: 100vh;
 }
 
-.infos-container h1 {
-  letter-spacing: 1px;
-  margin: 10px 0;
-}
-
 .infos-div {
-  width: auto;
+  min-width: 300px;
+  height: 335px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -42,17 +34,13 @@
   border-radius: 7px;
 }
 
-.title {
-  margin-top: 30px;
-}
-
 .container-title-description {
   padding: 20px;
 }
 
 .infos-div img {
   border-radius: 5px;
-  padding: 1rem;
+  border: 1px solid white;
   transition: transform 1s;
 }
 .infos-div img:hover {
@@ -62,46 +50,62 @@
 
 .comic-list {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  /* grid-template-columns: repeat(3, 1fr); */
+
+  grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+  /* grid-template-columns: 1fr 1fr 1fr; */
   justify-content: center;
   align-items: center;
+  gap: 5px;
+  width: 100%;
+  /* height: 80vh; */
+}
+.comics-list-title {
+  letter-spacing: 1px;
+  margin: 23px 0px;
+}
+.comics-list-title span {
+  font-style: italic;
 }
 
 .comic-card {
+  border: 1px solid white;
+  border-radius: 15px;
   display: flex;
   padding: 1rem;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  transition: transform 0.5s;
+  width: 100%; /* La carte occupe toute la largeur de sa colonne */
+  height: 100%;
+  box-shadow: 5px 5px 10px rgb(30, 28, 28);
 }
-
+.comic-card img {
+  border: 2px solid white;
+}
+.comic-card:hover {
+  transform: scale(0.9);
+}
 .comic-card span {
   padding: 1rem;
   font-weight: bolder;
 }
+/* and (min-width: 700px) and */
 
-@media screen and (min-width: 700px) and (max-width: 940px) {
+@media screen and (max-width: 940px) {
   .infos-container {
     display: flex;
     flex-direction: column;
     height: 100%;
-    background: linear-gradient(
-      90deg,
-      hsla(350, 73%, 44%, 1) 0%,
-      hsla(274, 65%, 12%, 1) 100%
-    );
-    background: -moz-linear-gradient(
-      90deg,
-      hsla(350, 73%, 44%, 1) 0%,
-      hsla(274, 65%, 12%, 1) 100%
-    );
+    background: linear-gradient(90deg, hsla(350, 73%, 44%, 1) 0%, hsla(274, 65%, 12%, 1) 100%);
+    background: -moz-linear-gradient(90deg, hsla(350, 73%, 44%, 1) 0%, hsla(274, 65%, 12%, 1) 100%);
     background: -webkit-linear-gradient(
       90deg,
       hsla(350, 73%, 44%, 1) 0%,
       hsla(274, 65%, 12%, 1) 100%
     );
-
-    /* filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#C11E38", endColorstr="#220B34", GradientType=1 ); */
   }
 
   .infos-div {
@@ -121,14 +125,19 @@
 
 @media screen and (max-width: 700px) {
   .infos-container {
-    background: linear-gradient(
-      90deg,
-      hsla(350, 73%, 44%, 1) 0%,
-      hsla(274, 65%, 12%, 1) 100%
-    );
+    background: linear-gradient(90deg, hsla(350, 73%, 44%, 1) 0%, hsla(274, 65%, 12%, 1) 100%);
   }
 
   .comic-list {
     grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (max-width: 415px) {
+  .comic-list {
+    grid-template-columns: 1fr;
+    /* margin: 0 auto; */
+  }
+  .comic-card {
+    width: 90%;
   }
 }

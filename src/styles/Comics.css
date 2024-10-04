@@ -75,9 +75,6 @@
 .comics-image:hover {
   transform: translate(5px) scale(1.1);
 }
-.comic-list {
-  height: 100%;
-}
 
 .paginate-comics {
   display: flex;

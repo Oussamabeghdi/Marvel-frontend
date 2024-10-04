@@ -73,24 +73,13 @@ const CharactersCard = ({ item, userId }) => {
           <div className="details-wrapper">
             <p className="character-name">{item.name}</p>
             <img className="image-character" src={picture} alt="heros" />
-            <p className="character-description">
-              {item.description || "Pas de description."}
-            </p>
+            <p className="character-description">{item.description || "Pas de description."}</p>
           </div>
         </Link>
         <Heart
-          //
           className="card-heart"
-          //J'utilise une condition ternaire pour déterminer quelle fonction appeler en fonction de la valeur de isFavorite.
-          // Si isFavorite est true, cela signifie que le personnage est déjà marqué comme favori, donc la fonction onRemoveFavorite() est appelée pour le retirer des favoris.
-          // Si isFavorite est false, cela signifie que le personnage n'est pas encore favori, donc la fonction onAddFavorite() est appelée pour l'ajouter aux favoris.
-          //fill dans svg correspond a la propriete couleur
-          // Si la variable isFavorite est true, la couleur de remplissage sera rouge ("red").
-          // Si isFavorite est false, la couleur de remplissage sera blanche ("white").
           style={{ fill: isFavorite ? "red" : "white", cursor: "pointer" }}
-          onClick={async () =>
-            isFavorite ? onRemoveFavorite() : onAddFavorite()
-          }
+          onClick={async () => (isFavorite ? onRemoveFavorite() : onAddFavorite())}
         />
       </div>
     </section>
@@ -98,3 +87,10 @@ const CharactersCard = ({ item, userId }) => {
 };
 
 export default CharactersCard;
+
+//J'utilise une condition ternaire pour déterminer quelle fonction appeler en fonction de la valeur de isFavorite.
+// Si isFavorite est true, cela signifie que le personnage est déjà marqué comme favori, donc la fonction onRemoveFavorite() est appelée pour le retirer des favoris.
+// Si isFavorite est false, cela signifie que le personnage n'est pas encore favori, donc la fonction onAddFavorite() est appelée pour l'ajouter aux favoris.
+//fill dans svg correspond a la propriete couleur
+// Si la variable isFavorite est true, la couleur de remplissage sera rouge ("red").
+// Si isFavorite est false, la couleur de remplissage sera blanche ("white").
