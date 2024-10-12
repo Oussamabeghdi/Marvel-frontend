@@ -19,17 +19,22 @@ const Header = ({
   setAllSuggestions,
   sucessMessage,
 }) => {
-  const location = useLocation();
   const [navbarActive, setNavbarActive] = useState(false);
   const [showItems, setShowItems] = useState(false);
+  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+
+  const location = useLocation();
   const onOpenNavbar = () => setNavbarActive(true);
   const onCloseNavbar = () => setNavbarActive(false);
   useEffect(() => {
     setShowItems(false);
-    if (token && location.pathname !== "/login") {
+    if (token && location.pathname !== "/login" && location.pathname !== "/signup") {
+      setShowItems(true);
+    } else if (token && location.pathname === "/login" && location.pathname === "/signup") {
+      setShowItems(false);
       const timer = setTimeout(() => {
         setShowItems(true);
-      }, 1000);
+      }, 2000);
       return () => clearTimeout(timer);
     }
   }, [token, location.pathname]);
@@ -55,9 +60,10 @@ const Header = ({
           navbarActive={navbarActive}
         />
       </div>
-
-      {token && showItems ? (
+      {token && showItems && (
         <Searchbar
+          setFilteredSuggestions={setFilteredSuggestions}
+          filteredSuggestions={filteredSuggestions}
           searchResults={searchResults}
           setSearchResults={setSearchResults}
           setSuggestions={setSuggestions}
@@ -65,7 +71,7 @@ const Header = ({
           allSuggestions={allSuggestions}
           setAllSuggestions={setAllSuggestions}
         />
-      ) : null}
+      )}
       <div onClick={onOpenNavbar} className="open-navbar-btn">
         <FontAwesomeIcon icon="bars" size="xl" />
       </div>

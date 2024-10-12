@@ -43,6 +43,8 @@ function App() {
   const [currentPage, setCurrentPage] = useState(0);
   const [currentPageData, setCurrentPageData] = useState([]);
   const [allSuggestions, setAllSuggestions] = useState([]);
+  //  state pour gérer la section actuelle
+  // const [currentSection, setCurrentSection] = useState("characters");
 
   const onChangeCurrentPageData = useCallback((pageData) => {
     setCurrentPageData(() => pageData);
@@ -67,7 +69,9 @@ function App() {
       Cookies.remove("userId");
     }
   };
-
+  // useEffect(() => {
+  //   setCurrentPage(1); // Réinitialise la page à 1 chaque fois que currentSection change
+  // }, [currentSection]);
   return (
     <div className="app-wrapper">
       <Router>
@@ -84,6 +88,8 @@ function App() {
           setToken={setToken}
           modalIsOpen={modalIsOpen}
           setModalIsOpen={setModalIsOpen}
+          // filteredSuggestions={filteredSuggestions}
+          // setFilteredSuggestions={setFilteredSuggestions}
           // successMessage={successMessage}
         />
 
@@ -97,13 +103,16 @@ function App() {
               <Characters
                 userId={userId}
                 searchResults={searchResults}
+                setSearchResults={setSearchResults}
                 currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
                 onChangeCurrentPage={onChangeCurrentPage}
                 currentPageData={currentPageData}
                 onChangeCurrentPageData={onChangeCurrentPageData}
                 handleTokenAndId={handleTokenAndId}
                 allSuggestions={allSuggestions}
                 setAllSuggestions={setAllSuggestions}
+                // setCurrentSection={() => setCurrentSection("characters")}
               />
             }
           />
@@ -129,10 +138,13 @@ function App() {
               <Comics
                 userId={userId}
                 searchResults={searchResults}
+                setAllSuggestions={setAllSuggestions}
                 currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
                 onChangeCurrentPage={onChangeCurrentPage}
                 currentPageData={currentPageData}
                 onChangeCurrentPageData={onChangeCurrentPageData}
+                // setCurrentSection={() => setCurrentSection("comics")}
               />
             }
           />

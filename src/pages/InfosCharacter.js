@@ -56,39 +56,46 @@ const InfosCharacter = () => {
         <div className="container-title-description">
           {/*  j'affiche le nom qui se trouve dans l'objet data en utilisant
           l'operateur d'enchainement optionnel '?' */}
-          <h1 className="title">{data?.name}</h1>
+          <h2 className="title">{data?.name}</h2>
           {/* <p className="desciption">{data?.description}</p> */}
         </div>
         <img
           src={
             data?.thumbnail?.path && data?.thumbnail?.extension
-              ? `${data.thumbnail.path}/portrait_xlarge.${data.thumbnail.extension}`
+              ? `${data.thumbnail.path}/standard_xlarge	.${data.thumbnail.extension}`
               : "default_image_path" // Remplacez par une image par défaut si les données sont manquantes
           }
           alt="character"
         />
       </div>
-      <h1 className="comics-list-title">
-        {`Liste des comics en lien avec `}{" "}
+      <h3 className="comics-list-title">
+        {`Liste des comics en lien avec `}
         <span>{data?.name ? data.name.replace(/[$]/g, "") : ""}</span>
-      </h1>
+      </h3>
       <div className="comic-list">
-        {data?.comics?.map((item, id) => (
-          <div className="comic-card" key={id}>
-            {item?.thumbnail?.path && item?.thumbnail?.extension && (
-              <Link to={`/comic/${item._id}`}>
-                <img
-                  src={`${item.thumbnail.path}/portrait_xlarge.${item.thumbnail.extension}`}
-                  alt={`item-${id}`}
-                />
-              </Link>
-            )}
-
-            <span style={{ textAlign: "center", letterSpacing: "1px" }}>
-              {item?.title.replace("#", "Issue# :")}
-            </span>
+        {data?.comics?.length > 0 ? (
+          data?.comics?.map((item, id) => (
+            <div className="comic-card" key={id}>
+              {item?.thumbnail?.path && item?.thumbnail?.extension && (
+                <Link to={`/comic/${item._id}`}>
+                  <img
+                    src={`${item.thumbnail.path}/portrait_xlarge.${item.thumbnail.extension}`}
+                    alt={`item-${id}`}
+                  />
+                </Link>
+              )}
+              <span style={{ textAlign: "center", letterSpacing: "1px" }}>
+                {item?.title.replace("#", "Issue# :")}
+              </span>
+            </div>
+          ))
+        ) : (
+          <div className="empty-comics-list-container">
+            <div className="empty-comics-list">
+              <p>Désolé nous n'avons pas trouvé de comics.</p>
+            </div>
           </div>
-        ))}
+        )}
       </div>
     </section>
   );

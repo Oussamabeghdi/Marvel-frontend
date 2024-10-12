@@ -1,12 +1,10 @@
 .header-container {
   display: flex;
   justify-content: space-between;
-  /* justify-content: space-around; */
   align-items: center;
   padding: 20px;
   height: 100px;
   box-sizing: border-box;
-  /* background-color: rgb(11, 2, 11); */
   border-bottom: 1px solid rgb(57, 57, 57);
 }
 .header-btn {
@@ -38,18 +36,31 @@
 .suggestions-list {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  max-height: 600px;
+  padding: 5px 2px;
+  height: 400px;
   width: 300px;
+  overflow-y: auto;
   border: 1px solid rgb(241, 234, 234);
   position: absolute;
   z-index: 2;
-  background-color: #ffffff;
-  /* padding: 5px; */
+  background-color: #c2b2b2;
 }
 .suggestion-item {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 20%;
+  border: 1px solid rgb(7, 1, 1);
+
   cursor: pointer;
-  color: rgb(35, 33, 33);
+  color: rgb(18, 1, 1);
+}
+.suggestion-item li {
+  padding: 3px 3px;
+}
+
+.suggestion-item:hover {
+  background-color: azure;
 }
 .input-search {
   width: 100%;
@@ -74,7 +85,6 @@
 }
 
 .header-logo img {
-  /* margin: 1rem 1rem; */
   max-width: 100px;
   height: 60px;
   object-fit: cover;
@@ -101,7 +111,6 @@
   .header-container {
     display: flex;
     justify-content: space-around;
-    /* padding: 0 20px; */
   }
   .searchbar {
     width: 180px;

@@ -1,11 +1,14 @@
 .favorites-wrapper {
+  /* height: 500px; */
   display: flex;
   flex-direction: column;
   row-gap: 20px;
-  background-image: url("../img/personnage_de_fiction.jpg");
-  background-size: contain;
-  background-repeat: no-repeat;
+  background-image: url("../img/AI-marvel.png");
+  background-size: cover;
+  /* background-repeat: no-repeat; */
   background-position: center;
+  padding: 20px;
+  /* backface-visibility: visible; */
 }
 
 .selected-wrapper {

@@ -5,7 +5,7 @@ import axios from "axios";
 
 // Composant CharactersCard, prenant item et userId comme props
 
-const CharactersCard = ({ item, userId }) => {
+const CharactersCard = ({ item, userId, setSearchResults }) => {
   // Déclaration de l'état pour suivre si le personnage est en favori
   const [isFavorite, setIsFavorite] = useState(false);
   // Utilisé pour vérifier si le personnage est en favori au montage du composant.
@@ -63,15 +63,19 @@ const CharactersCard = ({ item, userId }) => {
   };
   // Construire l'URL de l'image du personnage
 
-  const picture = item.thumbnail.path + "." + item.thumbnail.extension;
+  const picture = item?.thumbnail?.path + "." + item?.thumbnail?.extension;
   // Retourne le JSX pour afficher la carte du personnage
 
   return (
     <section>
       <div className="card-wrapper">
-        <Link className="character-link" to={`/character/${item._id}`}>
+        <Link
+          className="character-link"
+          to={`/character/${item._id}`}
+          onClick={() => setSearchResults("")}
+        >
           <div className="details-wrapper">
-            <p className="character-name">{item.name}</p>
+            <p className="character-name">{item?.name}</p>
             <img className="image-character" src={picture} alt="heros" />
             <p className="character-description">{item.description || "Pas de description."}</p>
           </div>

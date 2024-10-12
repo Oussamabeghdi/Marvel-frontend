@@ -1,13 +1,7 @@
-.wrapper-comics {
+.comics-wrapper {
   padding-top: 50px;
   background: url("../img/format-arw-PXjQaGxi4JA-unsplash.jpg") center/cover;
   background-position: center;
-  /* background-image: linear-gradient(
-    to bottom,
-    rgba(255, 255, 0, 0.5),
-    rgba(0, 0, 255, 0.5)
-  ); */
-  /* url ("../img/captain\ america.jpg"); */
 }
 
 .comics-container {

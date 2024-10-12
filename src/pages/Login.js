@@ -31,7 +31,7 @@ const Login = ({ token, handleTokenAndId }) => {
 
           setTimeout(() => {
             navigate("/characters");
-          }, 1000); // Délai de 3 secondes avant la redirection
+          }, 1000);
         }
       } catch (error) {
         console.log(error.response.data);

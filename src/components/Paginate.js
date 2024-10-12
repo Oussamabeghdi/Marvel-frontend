@@ -12,16 +12,12 @@ const Paginate = ({
   const onPageChange = ({ selected }) => {
     onChangeCurrentPage(selected);
   };
-  //Utilisation de useMemo pour calculer le nombre total de pages, basé sur la longueur des données
-  //et le nombre d'éléments par page. Le résultat est mémorisé et recalculé uniquement si data ou itemsPerPage change.
   const pageCount = useMemo(
     () => Math.ceil(data?.length / itemsPerPage) || 0,
     [data?.length, itemsPerPage]
   );
   const startDisplay = useMemo(() => currentPage * itemsPerPage, [currentPage, itemsPerPage]);
   const endDisplay = useMemo(() => startDisplay + itemsPerPage, [startDisplay, itemsPerPage]);
-  //useMemo pour optimiser les calculs (comme le nombre de pages
-  //et les indices de début/fin des éléments) afin de ne pas les recalculer inutilement à chaque rendu.
   useMemo(() => {
     const pageData = data.slice(startDisplay, endDisplay);
     onChangeCurrentPageData(pageData);
@@ -47,3 +43,8 @@ const Paginate = ({
 };
 
 export default Paginate;
+
+//Utilisation de useMemo pour calculer le nombre total de pages, basé sur la longueur des données
+//et le nombre d'éléments par page. Le résultat est mémorisé et recalculé uniquement si data ou itemsPerPage change.
+//useMemo pour optimiser les calculs (comme le nombre de pages
+//et les indices de début/fin des éléments) afin de ne pas les recalculer inutilement à chaque rendu.

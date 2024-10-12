@@ -2,13 +2,18 @@ import { useRef } from "react";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Searchbar = ({ searchResults, setSearchResults, allSuggestions }) => {
-  //Je crée une référence avec useRef et je l'initialise avec null,cette reference ne pointe vers rien donc elle est defenie à "null".
-  // La référence sera ensuite liée à un élément DOM.
+const Searchbar = ({
+  searchResults,
+  setSearchResults,
+  allSuggestions,
+  setFilteredSuggestions,
+  filteredSuggestions,
+}) => {
+  const [showSuggestions, setShowSuggestions] = useState(false); // État pour gérer la visibilité
+
   const inputRef = useRef(null);
-  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   useEffect(() => {
-    if (searchResults.length > 1) {
+    if (searchResults.length > 3) {
       const filtered = allSuggestions.filter((suggestion) =>
         suggestion.toLowerCase().startsWith(searchResults.toLowerCase())
       );
@@ -17,18 +22,19 @@ const Searchbar = ({ searchResults, setSearchResults, allSuggestions }) => {
     } else {
       setFilteredSuggestions([]);
     }
-  }, [searchResults, allSuggestions]);
+  }, [searchResults, allSuggestions, setFilteredSuggestions]);
 
   const handleSearchResults = (event) => {
-    const value = event.target.value.toLowerCase();
+    const value = event.target.value;
     setSearchResults(value);
+    setShowSuggestions(value.length > 0);
   };
 
   const handleSuggestionClick = (suggestion) => {
     setSearchResults(suggestion);
     setFilteredSuggestions([]);
+    setShowSuggestions(false);
   };
-  // console.log(searchResults);
   //Je crée un evenement au clique sur l'icone,
   // qui aura pour effet de mettre le focus sur l'input
   const handleIconClick = () => {
@@ -55,16 +61,14 @@ const Searchbar = ({ searchResults, setSearchResults, allSuggestions }) => {
           onClick={handleIconClick}
         />
       </div>
-      {filteredSuggestions.length > 0 && (
+      {showSuggestions && filteredSuggestions.length > 0 && (
         <ul className="suggestions-list">
           {filteredSuggestions.map((suggestion, index) => (
-            <li
-              key={index}
-              onClick={() => handleSuggestionClick(suggestion)}
-              className="suggestion-item"
-            >
-              {suggestion}
-            </li>
+            <div className="suggestion-item">
+              <li key={index} onClick={() => handleSuggestionClick(suggestion)}>
+                {suggestion}
+              </li>
+            </div>
           ))}
         </ul>
       )}
@@ -72,6 +76,8 @@ const Searchbar = ({ searchResults, setSearchResults, allSuggestions }) => {
   );
 };
 export default Searchbar;
+//Je crée une référence avec useRef et je l'initialise avec null,cette reference ne pointe vers rien donc elle est defenie à "null".
+// La référence sera ensuite liée à un élément DOM.
 
 // const handleSearchResults = (event) => {
 //   setSearchResults(event.target.value);

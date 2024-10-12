@@ -9,6 +9,8 @@ const Menu = ({
   userId,
   onClose,
   navbarActive,
+  filteredSuggestions,
+  setFilteredSuggestions,
   setTilte,
   setSearchResults,
 }) => {
@@ -21,6 +23,7 @@ const Menu = ({
   const handleClickCharacters = () => {
     if (token && userId) {
       navigate("/characters");
+
       //sinon on est renvoyé vers la page /login
     } else {
       navigate("/login");
@@ -30,7 +33,6 @@ const Menu = ({
   // se fait vers la page /comics
   const handleClickComics = () => {
     if (token && userId) {
-      // setTilte("Comics");
       navigate("/comics");
     } else {
       //sinon on est renvoyé vers la page /login
@@ -41,23 +43,25 @@ const Menu = ({
 
   const handleGoToFavorites = () => {
     if (token && userId) {
-      // setTilte("Favoris");
       navigate("/favorites");
     } else {
       //sinon on est renvoyé vers la page /login
       navigate("/login");
     }
   };
+
   useEffect(() => {
     setShowItems(false);
-    if (token && location.pathname !== "/login") {
+    if (token && location.pathname !== "/login" && location.pathname !== "/signup") {
+      setShowItems(true);
+    } else if (token && location.pathname === "/login" && location.pathname === "/signup") {
+      setShowItems(false);
       const timer = setTimeout(() => {
         setShowItems(true);
       }, 1000);
       return () => clearTimeout(timer);
     }
   }, [token, location.pathname]);
-
   return (
     <div className={navbarActive ? "navbar-wrapper navbar-active" : "navbar-wrapper"}>
       <div
@@ -67,31 +71,53 @@ const Menu = ({
         <FontAwesomeIcon icon="xmark" size="xl" />
       </div>
       <ul className={navbarActive ? "menu nav-active-flex" : "menu"} onClick={onClose}>
-        {token && showItems ? (
+        {token && showItems && (
           <>
-            <li onClick={() => handleClickCharacters()}>Personnages</li>
-            <li onClick={handleClickComics}>Comics</li>
-            <li onClick={handleGoToFavorites}> Favoris</li>
+            <li
+              onClick={() => {
+                handleClickCharacters();
+                setSearchResults("");
+              }}
+            >
+              Personnages
+            </li>
+            <li
+              onClick={() => {
+                handleClickComics();
+                setSearchResults("");
+              }}
+            >
+              Comics
+            </li>
+            <li
+              onClick={() => {
+                handleGoToFavorites();
+                setSearchResults("");
+              }}
+            >
+              Favoris
+            </li>
             <li className="button-go-to-profil">
               <Link to="/profile">
                 <span>Profil</span>
-                <FontAwesomeIcon className="user" icon="user" size="l" color="white" />
+                <FontAwesomeIcon className="user" icon="user" color="white" />
               </Link>
             </li>
           </>
-        ) : null}
-        {!token ? (
+        )}
+        {!token && (
           <li>
             <Link className="menu-link" to="/login">
               Connexion
             </Link>
           </li>
-        ) : null}
+        )}
         {token && showItems ? (
           <li
             className="logout-btn"
             onClick={() => {
               handleTokenAndId(null);
+              setSearchResults("");
               navigate("/");
             }}
           >
