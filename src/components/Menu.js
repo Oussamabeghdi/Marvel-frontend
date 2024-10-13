@@ -23,7 +23,6 @@ const Menu = ({
   const handleClickCharacters = () => {
     if (token && userId) {
       navigate("/characters");
-
       //sinon on est renvoyé vers la page /login
     } else {
       navigate("/login");
@@ -105,13 +104,7 @@ const Menu = ({
             </li>
           </>
         )}
-        {!token && (
-          <li>
-            <Link className="menu-link" to="/login">
-              Connexion
-            </Link>
-          </li>
-        )}
+        <></>
         {token && showItems ? (
           <li
             className="logout-btn"
@@ -124,15 +117,20 @@ const Menu = ({
             Déconnexion
           </li>
         ) : (
-          !token && (
-            <>
-              <li>
-                <Link className="menu-link" to="/signup">
-                  S'inscrire
-                </Link>
-              </li>
-            </>
-          )
+          <>
+            <li>
+              <Link className="menu-link" to="/login">
+                Connexion
+              </Link>
+            </li>
+            {/* {!token && (
+          )} */}
+            <li>
+              <Link className="menu-link" to="/signup">
+                S'inscrire
+              </Link>
+            </li>
+          </>
         )}
       </ul>
     </div>

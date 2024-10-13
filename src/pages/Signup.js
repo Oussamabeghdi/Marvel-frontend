@@ -9,11 +9,12 @@ const Signup = ({ handleTokenAndId }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  // const [textInput, setTextInput] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [textInput, setTextInput] = useState("");
+  const [errorMessage, setErrorMessage] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
 
   const navigate = useNavigate();
+
   const validateForm = () => {
     const newErrors = {};
 
@@ -26,11 +27,13 @@ const Signup = ({ handleTokenAndId }) => {
     if (password.length < 6) {
       newErrors.password = "Le mot de passe doit contenir au moins 6 caractères.";
     }
-
+    if (password !== confirmPassword) {
+      newErrors.confirmPassword = "Les mots de passe ne correspondent pas";
+    }
     // Valider le texte pour éviter les caractères non sécurisés
-    // if (validator.contains(textInput, "<script>")) {
-    //   newErrors.textInput = "Le champ contient du contenu potentiellement dangereux.";
-    // }
+    if (validator.contains(textInput, "<script>")) {
+      newErrors.textInput = "Le champ contient du contenu potentiellement dangereux.";
+    }
 
     return newErrors;
   };
@@ -72,24 +75,19 @@ const Signup = ({ handleTokenAndId }) => {
             email:
               "Cette adresse email est déjà associée à un compte. Veuillez utiliser une autre adresse email ou récupérer votre compte existant.",
           });
-          // } else if (error.response.data.message === "missing parameters") {
-          //   setErrorMessage({ global: "Veuillez remplir tous les champs !" });
-        } else if (error.response.data.message === "The passwords do not match.") {
-          setErrorMessage({
-            confirmPassword: "Veuillez vous assurer que les deux mots de passe sont identiques.",
-          });
-          // } else if (error.response.data.message === "missing parameters") {
-          //   setErrorMessage({ global: "Veuillez remplir tous les champs !" });
+        } else if (error.response.data.message === "missing parameters") {
+          setErrorMessage({ parameters: "Veuillez remplir tous les champs !" });
         } else {
-          setErrorMessage({ global: "Veuillez remplir tous les champs !" });
+          setErrorMessage({ global: "Un problème est survenu, veuillez réessayer." });
         }
-        // {
-        //   setErrorMessage({ global: "Veuillez remplir tous les champs !" });
-        // }
       }
     }
   };
-
+  const handleInputChange = (setter) => (event) => {
+    const sanitizedInput = event.target.value.replace(/<script>/gi, ""); // Suppression des balises <script>
+    setter(sanitizedInput); // Mettre à jour l'état correspondant
+    setTextInput(sanitizedInput); // Mettre à jour textInput pour la vérification
+  };
   return (
     <section className="register-container">
       <div className="signup-container">
@@ -101,49 +99,37 @@ const Signup = ({ handleTokenAndId }) => {
 
         <form onSubmit={handleSignup}>
           <h1>S'inscrire</h1>
-          {/* <label className="label-for-signup" htmlFor="username"></label> */}
           <input
             label="username"
             id="username"
             value={username}
             type="text"
             placeholder="Nom"
-            onChange={(event) => {
-              setUsername(event.target.value);
-            }}
+            onChange={handleInputChange(setUsername)}
           />
-          {/* <label className="label-for-signup" htmlFor="email"></label> */}
           <input
             label="email"
             id="email"
             value={email}
             type="mail"
             placeholder="Email"
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
+            onChange={handleInputChange(setEmail)}
           />
 
-          {/* <label className="label-for-signup" htmlFor="password"></label> */}
           <input
             id="password"
             value={password}
             type="password"
             placeholder="Mot de passe"
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
+            onChange={handleInputChange(setPassword)}
           />
 
-          {/* <label className="label-for-signup" htmlFor="confirmPassword"></label> */}
           <input
             id="confirmPassword"
             value={confirmPassword}
             type="password"
             placeholder="Confirmer mot de passe"
-            onChange={(event) => {
-              setConfirmPassword(event.target.value);
-            }}
+            onChange={handleInputChange(setConfirmPassword)}
           />
           <input className="signup-btn" type="submit" value="S'inscrire" />
 
@@ -152,17 +138,17 @@ const Signup = ({ handleTokenAndId }) => {
               <p>Tu as déjà un compte? Connecte-toi !</p>
             </div>
           </Link>
-          {errorMessage.global && (
-            <p style={{ color: "red" }}>{errorMessage.global}</p>
-            // <div className={`err-message ${errorMessage.global ? "" : "hidden"}`}>
-            // </div>
+          {errorMessage.global && <span style={{ color: "red" }}>{errorMessage.global}</span>}
+          {errorMessage.parameters && (
+            <span style={{ color: "red" }}> {errorMessage.parameters}</span>
           )}
-
-          {errorMessage.email && <p style={{ color: "red" }}>{errorMessage.email}</p>}
-          {errorMessage.password && <p style={{ color: "red" }}>{errorMessage.password}</p>}
+          {errorMessage.glopal && <span style={{ color: "red" }}> {errorMessage.glopal}</span>}
+          {errorMessage.email && <span style={{ color: "red" }}>{errorMessage.email}</span>}
+          {errorMessage.password && <span style={{ color: "red" }}>{errorMessage.password}</span>}
           {errorMessage.confirmPassword && (
-            <p style={{ color: "red" }}>{errorMessage.confirmPassword}</p>
+            <span style={{ color: "red" }}>{errorMessage.confirmPassword}</span>
           )}
+          {errorMessage.textInput && <span style={{ color: "red" }}>{errorMessage.textInput}</span>}
         </form>
       </div>
     </section>

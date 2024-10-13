@@ -13,7 +13,7 @@ const Searchbar = ({
 
   const inputRef = useRef(null);
   useEffect(() => {
-    if (searchResults.length > 3) {
+    if (searchResults.length > 0) {
       const filtered = allSuggestions.filter((suggestion) =>
         suggestion.toLowerCase().startsWith(searchResults.toLowerCase())
       );
