@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { ReactComponent as Heart } from "../assets/svg/heart.svg";
 import axios from "axios";
 
-const ComicsCard = ({ item, userId }) => {
+const ComicsCard = ({ item, userId, setSearchResults }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
@@ -49,7 +49,11 @@ const ComicsCard = ({ item, userId }) => {
   return (
     <section>
       <div className="card-wrapper">
-        <Link className="character-link" to={`/comic/${item._id}`}>
+        <Link
+          className="character-link"
+          to={`/comic/${item._id}`}
+          onClick={() => setSearchResults("")}
+        >
           <div className="details-wrapper">
             <p className="comics-title ">{item.title.replace("#", "edition ")}</p>
 
