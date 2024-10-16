@@ -51,8 +51,8 @@ const Signup = ({ handleTokenAndId }) => {
 
       try {
         const response = await axios.post(
-          "https://site--marvel-backend--9gtnl5qyn2yw.code.run/signup",
-          // "http://localhost:4000/signup",
+          // "https://site--marvel-backend--9gtnl5qyn2yw.code.run/signup",
+          "http://localhost:4000/signup",
           {
             username: username,
             email: email,
@@ -60,14 +60,16 @@ const Signup = ({ handleTokenAndId }) => {
             confirmPassword: confirmPassword,
           }
         );
-        console.log(response.data);
+        // console.log(response.data);
+        console.log(response.data.token);
+
         if (response.data.token) {
           handleTokenAndId(response.data.token, response.data._id);
 
           setSuccessMessage("Félicitation! Votre inscription a été enregistrée avec succès! ");
-          setTimeout(() => {
-            navigate("/login");
-          }, 1000);
+          navigate("/login");
+          // setTimeout(() => {
+          // }, 1000);
         }
       } catch (error) {
         if (error.response.data.message === "email already used") {
@@ -77,16 +79,20 @@ const Signup = ({ handleTokenAndId }) => {
           });
         } else if (error.response.data.message === "missing parameters") {
           setErrorMessage({ parameters: "Veuillez remplir tous les champs !" });
-        } else {
-          setErrorMessage({ global: "Un problème est survenu, veuillez réessayer." });
         }
+        // else {
+        //   setErrorMessage({ global: "Un problème est survenu, veuillez réessayer." });
+        // }
       }
     }
   };
   const handleInputChange = (setter) => (event) => {
-    const sanitizedInput = event.target.value.replace(/<script>/gi, ""); // Suppression des balises <script>
-    setter(sanitizedInput); // Mettre à jour l'état correspondant
-    setTextInput(sanitizedInput); // Mettre à jour textInput pour la vérification
+    // Suppression des balises <script>
+    const sanitizedInput = event.target.value.replace(/<script>/gi, "");
+    // Mettre à jour l'état correspondant
+    setter(sanitizedInput);
+    // Mettre à jour textInput pour la vérification
+    setTextInput(sanitizedInput);
   };
   return (
     <section className="register-container">
@@ -138,7 +144,7 @@ const Signup = ({ handleTokenAndId }) => {
               <p>Tu as déjà un compte? Connecte-toi !</p>
             </div>
           </Link>
-          {errorMessage.global && <span style={{ color: "red" }}>{errorMessage.global}</span>}
+          {/* {errorMessage.global && <span style={{ color: "red" }}>{errorMessage.global}</span>} */}
           {errorMessage.parameters && (
             <span style={{ color: "red" }}> {errorMessage.parameters}</span>
           )}

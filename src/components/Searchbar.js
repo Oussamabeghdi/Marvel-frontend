@@ -13,7 +13,7 @@ const Searchbar = ({
 
   const inputRef = useRef(null);
   useEffect(() => {
-    if (searchResults.length > 0) {
+    if (searchResults.length > 2) {
       const filtered = allSuggestions.filter((suggestion) =>
         suggestion.toLowerCase().startsWith(searchResults.toLowerCase())
       );
@@ -27,10 +27,10 @@ const Searchbar = ({
   const handleSearchResults = (event) => {
     const value = event.target.value;
     setSearchResults(value);
-    setShowSuggestions(value.length > 0);
+    setShowSuggestions(value.length > 2);
   };
 
-  const handleSuggestionClick = (suggestion) => {
+  const handleSuggestionClick = (suggestion, filtered) => {
     setSearchResults(suggestion);
     setFilteredSuggestions([]);
     setShowSuggestions(false);
@@ -61,7 +61,7 @@ const Searchbar = ({
           onClick={handleIconClick}
         />
       </div>
-      {showSuggestions && filteredSuggestions.length > 0 && (
+      {showSuggestions && filteredSuggestions?.length > 0 && (
         <ul className="suggestions-list">
           {filteredSuggestions.map((suggestion, index) => (
             <div className="suggestion-item">

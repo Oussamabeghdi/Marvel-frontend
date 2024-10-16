@@ -42,8 +42,8 @@ const CharactersCard = ({ item, userId, setSearchResults }) => {
       setIsFavorite(true);
     }
   };
-  // Fonction pour enlever le personnage des favoris
 
+  // Fonction pour enlever le personnage des favoris
   const onRemoveFavorite = async () => {
     // Si pas en favori, ne fait rien
     if (!isFavorite) return;

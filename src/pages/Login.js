@@ -41,7 +41,7 @@ const Login = ({ token, handleTokenAndId }) => {
         if (error.response.data.message === "User not found") {
           setErrorMessage("Utilisateur non trouvé. Veuillez réessayer.");
         }
-        if (error.response.data.message === "Unauthorized 1") {
+        if (error.response.data.message === "Unauthorized ") {
           setErrorMessage("L'adresse email ou le mot de passe est incorrect. Veuillez réessayer.");
         }
       }

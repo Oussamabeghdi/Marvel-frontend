@@ -30,10 +30,10 @@ const Characters = ({
         const response = await axios.get(
           `https://site--marvel-backend--9gtnl5qyn2yw.code.run/characters?&name=${searchResults}`
         ); // Requête API pour récupérer les personnages en fonction des résultats de recherche
-        const characterNames = response.data.results.map((character) => character.name);
+        const characterNames = response.data?.results.map((character) => character.name);
         setAllSuggestions(characterNames); // Stocke les noms dans allSuggestions
 
-        console.log(response.data); // Affiche les données de la réponse dans la console
+        console.log(response.data.results); // Affiche les données de la réponse dans la console
         setData(response.data.results); // Met à jour l'état avec les données récupérées
         setFilteredData(response.data.results);
       } catch (error) {
@@ -44,10 +44,10 @@ const Characters = ({
     };
 
     fetchData(); // Appel de la fonction fetchData
-  }, [searchResults, setAllSuggestions, setSearchResults]); // Dépendance du useEffect : se déclenche lorsque searchResults change
+  }, [searchResults, setAllSuggestions]); // Dépendance du useEffect : se déclenche lorsque searchResults change
   useEffect(() => {
-    if (searchResults.length > 3) {
-      const filtered = data.filter((character) =>
+    if (searchResults.length > 2) {
+      const filtered = data?.filter((character) =>
         character.name.toLowerCase().startsWith(searchResults.toLowerCase())
       );
       setFilteredData(filtered); // Met à jour les données filtrées
@@ -59,7 +59,7 @@ const Characters = ({
   const itemsPerPage = 16;
   const indexOfFirstItem = currentPage * itemsPerPage; // Début de la page actuelle
   const indexOfLastItem = indexOfFirstItem + itemsPerPage;
-  const currentPageCharacters = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+  const currentPageCharacters = filteredData?.slice(indexOfFirstItem, indexOfLastItem);
   return isLoading ? ( // Affichage conditionnel en fonction de l'état de chargement
     <div className="loading-wrapper">
       <Oval
@@ -76,7 +76,7 @@ const Characters = ({
     <>
       <section className="wrapper-characters">
         <div className="characters-container">
-          {currentPageCharacters.length > 0 ? (
+          {currentPageCharacters?.length > 0 ? (
             currentPageCharacters.map((character) => (
               <CharactersCard
                 key={character._id}

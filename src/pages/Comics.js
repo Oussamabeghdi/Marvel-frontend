@@ -17,12 +17,15 @@ const Comics = ({
 }) => {
   const [data, setData] = useState([]);
   const [isloading, setIsloading] = useState(true);
+  const [filteredData, setFilteredData] = useState([]);
+
   useEffect(() => {
     setCurrentPage(0);
   }, [setCurrentPage]);
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsloading(true);
       try {
         const response = await axios.get(
           `https://site--marvel-backend--9gtnl5qyn2yw.code.run/comics?title=${searchResults}`
@@ -30,15 +33,37 @@ const Comics = ({
         const comicsTitles = response.data.results.map((comics) => comics.title);
         setAllSuggestions(comicsTitles);
         console.log(response.data);
-        setData(response.data);
-        setIsloading(false);
+        setData(response.data.results);
+        setFilteredData(response.data.results);
       } catch (error) {
         console.log({ message: error.message });
+      } finally {
+        setIsloading(false);
       }
     };
-    fetchData();
+    // if (searchResults.length > 2) {
+    //   fetchData();
+    // } else {
+    //   // Si moins de 3 caractères, réinitialiser les données
+    //   setFilteredData([]);
+    // }
+    fetchData(); // Effectue la requête seulement après le délai du debounce
   }, [searchResults, setAllSuggestions]);
+  useEffect(() => {
+    if (searchResults.length > 2) {
+      const filteredComicsData = data?.filter((comics) =>
+        comics.title.toLowerCase().startsWith(searchResults.toLowerCase())
+      );
+      setFilteredData(filteredComicsData); // Met à jour les données filtrées
+    } else {
+      setFilteredData(data); // Si aucune recherche, afficher tous les personnages
+    }
+  }, [searchResults, data, setFilteredData]); // Dépendance sur searchResults et data
 
+  const itemsPerPage = 16;
+  // const indexOfFirstItem = currentPage * itemsPerPage; // Début de la page actuelle
+  // const indexOfLastItem = indexOfFirstItem + itemsPerPage;
+  // const currentPageComics = filteredData?.slice(indexOfFirstItem, indexOfLastItem);
   return isloading ? (
     <div className="loading-wrapper">
       <Oval
@@ -54,14 +79,18 @@ const Comics = ({
   ) : (
     <section className="comics-wrapper">
       <div className="comics-container">
-        {currentPageData.map((item, index) => {
-          return <ComicsCard item={item} key={index} userId={userId} />;
-        })}
+        {filteredData.length > 0 ? (
+          filteredData.map((comics, index) => {
+            return <ComicsCard item={comics} key={index} userId={userId} />;
+          })
+        ) : (
+          <p style={{ fontSize: "26px", color: "white" }}>Aucun personnage trouvé</p>
+        )}
       </div>
       <div className="paginate-comics">
         <Paginate
-          data={data.results}
-          itemsPerPage={16}
+          data={filteredData}
+          itemsPerPage={itemsPerPage}
           onChangeCurrentPageData={onChangeCurrentPageData}
           currentPage={currentPage}
           onChangeCurrentPage={onChangeCurrentPage}
