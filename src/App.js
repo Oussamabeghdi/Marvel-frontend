@@ -128,10 +128,10 @@ function App() {
             element={<InfosCharacter searchResults={searchResults} />}
           />
           <Route path="/comic/:comicId" element={<ComicsList />} />
-          {/* <Route
+          <Route
             path="/comics/:characterId"
             element={<InfosCharacter searchResults={searchResults} />}
-          /> */}
+          />
           <Route
             path="/comics"
             element={
