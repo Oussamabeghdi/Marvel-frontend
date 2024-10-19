@@ -16,7 +16,7 @@
 
 .navbar-wrapper ul li {
   height: 40px;
-  /* padding: 0 15px; */
+  font-size: small;
   display: flex;
   justify-content: center;
   align-items: center;
