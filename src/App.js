@@ -167,16 +167,3 @@ function App() {
 }
 
 export default App;
-
-{
-  /* <Route path="/request-reset-password" element={<RequestResetPassword />} />
-<Route path="/reset-password/:token" element={<ResetPassword />} /> */
-}
-{
-}
-{
-  /* searchResults={searchResults}  */
-}
-// filteredSuggestions={filteredSuggestions}
-// setFilteredSuggestions={setFilteredSuggestions}
-// successMessage={successMessage}

@@ -104,32 +104,26 @@ const Menu = ({
             </li>
           </>
         )}
-        <></>
+
         {token && showItems ? (
           <li
             className="logout-btn"
             onClick={() => {
-              handleTokenAndId(null);
-              setSearchResults("");
-              navigate("/");
+              handleTokenAndId(null, null);
+              navigate("/login");
             }}
           >
             Déconnexion
           </li>
         ) : (
           <>
-            <li>
-              <Link className="menu-link" to="/login">
-                Connexion
-              </Link>
-            </li>
-            {/* {!token && (
-          )} */}
-            <li>
-              <Link className="menu-link" to="/signup">
-                S'inscrire
-              </Link>
-            </li>
+            <Link className="menu-link" to="/login">
+              <button className="login-button">Connexion</button>
+            </Link>
+
+            <Link className="menu-link" to="/signup">
+              <button className="signup-button"> S'inscrire</button>
+            </Link>
           </>
         )}
       </ul>

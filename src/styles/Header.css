@@ -24,7 +24,7 @@
 .navbar-wrapper button {
   background-color: black;
   color: white;
-  border: hidden;
+  /* border: hidden; */
   padding: 1rem;
 }
 .searchbar {

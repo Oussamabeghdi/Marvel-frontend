@@ -12,39 +12,38 @@ const Login = ({ token, handleTokenAndId }) => {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    if (token) {
-      navigate("/characters");
-    } else {
-      try {
-        const response = await axios.post(
-          "https://site--marvel-backend--9gtnl5qyn2yw.code.run/login",
-          {
-            email: email,
-            password: password,
-          }
-        );
+    setErrorMessage("");
 
-        if (response.data.token) {
-          handleTokenAndId(response.data.token, response.data._id);
-          console.log(`token : ${response.data.token}`);
-          setSuccessMessage("Connexion en cours...");
+    try {
+      const response = await axios.post(
+        "https://site--marvel-backend--9gtnl5qyn2yw.code.run/login",
+        {
+          email: email,
+          password: password,
+        }
+      );
 
-          setTimeout(() => {
-            navigate("/characters");
-          }, 1000);
-        }
-      } catch (error) {
-        console.log(error.response.data);
-        if (error.response.data.message === "missing parameters") {
-          setErrorMessage("Veuillez remplir tous les champs!");
-        }
-        if (error.response.data.message === "User not found") {
-          setErrorMessage("Utilisateur non trouvé. Veuillez réessayer.");
-        }
-        if (error.response.data.message === "Unauthorized ") {
-          setErrorMessage("L'adresse email ou le mot de passe est incorrect. Veuillez réessayer.");
-        }
+      if (response.data.token) {
+        handleTokenAndId(response.data.token, response.data._id);
+        console.log(`token : ${response.data.token}`);
+        setSuccessMessage("Connexion en cours...");
+
+        setTimeout(() => {
+          navigate("/characters");
+        }, 1000);
       }
+    } catch (error) {
+      console.log(error.response.data);
+      if (error.response.data.message === "missing parameters") {
+        setErrorMessage("Veuillez remplir tous les champs!");
+      }
+      if (error.response.data.message === "User not found") {
+        setErrorMessage("Utilisateur non trouvé. Veuillez réessayer.");
+      }
+      if (error.response.data.message === "Unauthorized") {
+        setErrorMessage("L'adresse email ou le mot de passe est incorrect. Veuillez réessayer.");
+      }
+      // }
     }
   };
 
