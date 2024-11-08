@@ -69,12 +69,13 @@ function App() {
       Cookies.remove("userId");
     }
   };
-  // useEffect(() => {
-  //   setCurrentPage(1); // Réinitialise la page à 1 chaque fois que currentSection change
-  // }, [currentSection]);
+
   return (
     <div className="app-wrapper">
+      {/* Définition du router pour gérer la navigation entre les pages */}
+
       <Router>
+        {/* Header avec plusieurs props pour la gestion de la connexion et de la recherche */}
         <Header
           token={token}
           userId={userId}
@@ -88,15 +89,17 @@ function App() {
           setToken={setToken}
           modalIsOpen={modalIsOpen}
           setModalIsOpen={setModalIsOpen}
-          // filteredSuggestions={filteredSuggestions}
-          // setFilteredSuggestions={setFilteredSuggestions}
-          // successMessage={successMessage}
         />
-
+        {/* Routes définissant les pages de l'application */}
         <Routes>
+          {/* Route pour la page de connexion */}
           <Route path="/" element={<Login token={token} handleTokenAndId={handleTokenAndId} />} />
-          {/* <Route path="/request-reset-password" element={<RequestResetPassword />} />
-          <Route path="/reset-password/:token" element={<ResetPassword />} /> */}
+          {/* Route pour la page d'inscription */}
+          <Route path="/signup" element={<Signup handleTokenAndId={handleTokenAndId} />} />
+          {/* Route alternative pour la page de connexion */}
+          <Route path="/login" element={<Login handleTokenAndId={handleTokenAndId} />} />
+          {/* Route pour la page de profil */}
+          {/* Route pour la page de personnages Marvel */}
           <Route
             path="/characters"
             element={
@@ -107,27 +110,14 @@ function App() {
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
                 onChangeCurrentPage={onChangeCurrentPage}
-                currentPageData={currentPageData}
                 onChangeCurrentPageData={onChangeCurrentPageData}
                 handleTokenAndId={handleTokenAndId}
-                allSuggestions={allSuggestions}
                 setAllSuggestions={setAllSuggestions}
-                // setCurrentSection={() => setCurrentSection("characters")}
               />
             }
           />
-          <Route path="/signup" element={<Signup handleTokenAndId={handleTokenAndId} />} />
-          <Route path="/login" element={<Login handleTokenAndId={handleTokenAndId} />} />
-          <Route
-            path="/profile"
-            element={<Profile token={token} userId={userId} handleTokenAndId={handleTokenAndId} />}
-          />
-          {/* Route pour la page profil */}
-          <Route
-            path="/character/:characterId"
-            element={<InfosCharacter searchResults={searchResults} />}
-          />
-          <Route path="/comic/:comicId" element={<ComicsList />} />
+          {/* Route pour la page des comics */}
+          <Route path="/character/:characterId" element={<InfosCharacter />} />
           <Route
             path="/comics/:characterId"
             element={<InfosCharacter searchResults={searchResults} />}
@@ -144,10 +134,17 @@ function App() {
                 onChangeCurrentPage={onChangeCurrentPage}
                 currentPageData={currentPageData}
                 onChangeCurrentPageData={onChangeCurrentPageData}
-                // setCurrentSection={() => setCurrentSection("comics")}
               />
             }
           />
+          <Route
+            path="/profile"
+            element={<Profile token={token} userId={userId} handleTokenAndId={handleTokenAndId} />}
+          />
+          {/* Route pour la page de détails d'un personnage spécifique */}
+          {/* Route pour la page de détails d'un comic spécifique */}
+          <Route path="/comic/:comicId" element={<ComicsList />} />
+          {/* Route pour la page des favoris */}
           <Route
             path="/favorites"
             element={
@@ -160,7 +157,9 @@ function App() {
             }
           />
         </Routes>
+        {/* Bouton pour remonter en haut de la page */}
         <ButtonScrollToTop />
+        {/* Pied de page avec gestion de la déconnexion */}
         <Footer token={token} setToken={setToken} />
       </Router>
     </div>
@@ -168,3 +167,16 @@ function App() {
 }
 
 export default App;
+
+{
+  /* <Route path="/request-reset-password" element={<RequestResetPassword />} />
+<Route path="/reset-password/:token" element={<ResetPassword />} /> */
+}
+{
+}
+{
+  /* searchResults={searchResults}  */
+}
+// filteredSuggestions={filteredSuggestions}
+// setFilteredSuggestions={setFilteredSuggestions}
+// successMessage={successMessage}

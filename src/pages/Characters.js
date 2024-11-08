@@ -60,7 +60,9 @@ const Characters = ({
   const indexOfFirstItem = currentPage * itemsPerPage; // Début de la page actuelle
   const indexOfLastItem = indexOfFirstItem + itemsPerPage;
   const currentPageCharacters = filteredData?.slice(indexOfFirstItem, indexOfLastItem);
-  return isLoading ? ( // Affichage conditionnel en fonction de l'état de chargement
+
+  // Affichage conditionnel en fonction de l'état de chargement
+  return isLoading ? (
     <div className="loading-wrapper">
       <Oval
         ariaLabel="loading-indicator"

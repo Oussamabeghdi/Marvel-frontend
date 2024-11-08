@@ -17,6 +17,7 @@ const ComicsList = () => {
         const response = await axios.get(
           `https://site--marvel-backend--9gtnl5qyn2yw.code.run/comic/${comicId}`
         );
+        console.log(response.data);
 
         setData(response.data);
         setIsLoading(false);

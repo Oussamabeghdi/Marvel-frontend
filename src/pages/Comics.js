@@ -41,12 +41,7 @@ const Comics = ({
         setIsloading(false);
       }
     };
-    // if (searchResults.length > 2) {
-    //   fetchData();
-    // } else {
-    //   // Si moins de 3 caractères, réinitialiser les données
-    //   setFilteredData([]);
-    // }
+
     fetchData(); // Effectue la requête seulement après le délai du debounce
   }, [searchResults, setAllSuggestions]);
   useEffect(() => {

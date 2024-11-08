@@ -6,7 +6,7 @@ import "../styles/Infoscharacter.css";
 
 const InfosCharacter = () => {
   // Déclare un état pour stocker les données du personnage
-  const [data, setData] = useState([] || null);
+  const [data, setData] = useState([]);
 
   // Déclare un état pour indiquer si les données sont en cours de chargement
   const [isLoading, setIsLoading] = useState(false);
@@ -14,8 +14,10 @@ const InfosCharacter = () => {
   // Récupère les paramètres de l'URL
   const params = useParams();
   const id = params.characterId;
+  console.log(id);
 
   useEffect(() => {
+    setIsLoading(true);
     // Déclare une fonction asynchrone pour récupérer les données
     const fetchData = async () => {
       try {
@@ -36,19 +38,22 @@ const InfosCharacter = () => {
     };
     // Appelle la fonction pour récupérer les données
     fetchData();
+
     // Exécute cet effet chaque fois que l'identifiant du personnage (id) change
   }, [id]);
   // J'affiche un indicateur de chargement si les données sont en cours de chargement
   return isLoading ? (
-    <Oval
-      ariaLabel="loading-indicator"
-      height={100}
-      width={100}
-      strokeWidth={1000}
-      strokeWidthSecondary={1000}
-      color="black"
-      secondaryColor="red"
-    />
+    <div className="loading-wrapper">
+      <Oval
+        ariaLabel="loading-indicator"
+        height={100}
+        width={100}
+        strokeWidth={1000}
+        strokeWidthSecondary={1000}
+        color="black"
+        secondaryColor="red"
+      />
+    </div>
   ) : (
     // Affiche les informations du personnage une fois les données chargées
     <section className="infos-container">
@@ -62,7 +67,7 @@ const InfosCharacter = () => {
         <img
           src={
             data?.thumbnail?.path && data?.thumbnail?.extension
-              ? `${data.thumbnail.path}/standard_xlarge	.${data.thumbnail.extension}`
+              ? `${data.thumbnail.path}/standard_xlarge.${data.thumbnail.extension}`
               : "default_image_path" // Remplacez par une image par défaut si les données sont manquantes
           }
           alt="character"

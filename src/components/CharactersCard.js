@@ -24,7 +24,6 @@ const CharactersCard = ({ item, userId, setSearchResults }) => {
   }, [item._id, userId]); // Dépendances de l'effet
 
   // Fonction pour ajouter le personnage aux favoris
-
   const onAddFavorite = async () => {
     // Si déjà favori, ne fait rien
     if (isFavorite) return;

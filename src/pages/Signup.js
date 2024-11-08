@@ -51,8 +51,7 @@ const Signup = ({ handleTokenAndId }) => {
 
       try {
         const response = await axios.post(
-          // "https://site--marvel-backend--9gtnl5qyn2yw.code.run/signup",
-          "http://localhost:4000/signup",
+          "https://site--marvel-backend--9gtnl5qyn2yw.code.run/signup",
           {
             username: username,
             email: email,
@@ -144,7 +143,6 @@ const Signup = ({ handleTokenAndId }) => {
               <p>Tu as déjà un compte? Connecte-toi !</p>
             </div>
           </Link>
-          {/* {errorMessage.global && <span style={{ color: "red" }}>{errorMessage.global}</span>} */}
           {errorMessage.parameters && (
             <span style={{ color: "red" }}> {errorMessage.parameters}</span>
           )}
@@ -157,6 +155,7 @@ const Signup = ({ handleTokenAndId }) => {
           {errorMessage.textInput && <span style={{ color: "red" }}>{errorMessage.textInput}</span>}
         </form>
       </div>
+      {/* {errorMessage.global && <span style={{ color: "red" }}>{errorMessage.global}</span>} */}
     </section>
   );
 };
