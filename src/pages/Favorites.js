@@ -9,6 +9,7 @@ const COMICS = "comics";
 
 export const Favorites = ({
   userId,
+
   currentPage,
   onChangeCurrentPage,
   onChangeCurrentPageData,
@@ -19,6 +20,8 @@ export const Favorites = ({
 
   useEffect(() => {
     if (userId) {
+      console.log(userId);
+
       (async () => {
         try {
           const response = await axios.get(
@@ -69,9 +72,10 @@ export const Favorites = ({
       </div>
       <div className="characters-container">
         {favoritesIdData?.length ? (
-          favoritesIdData?.map((favoriteId) => (
+          favoritesIdData?.map((favoriteId, index) => (
             <FavoriteCard
-              key={`favorites: ${favoriteId}`}
+              key={`favorites: ${favoriteId}-${index}`}
+              // key={`${type}-${favoriteId}-${index}`}
               type={selectedValue}
               elementId={favoriteId}
             />

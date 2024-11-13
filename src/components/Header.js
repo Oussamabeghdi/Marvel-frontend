@@ -82,6 +82,7 @@ const Header = ({
           userId={userId}
           onClose={onCloseNavbar}
           navbarActive={navbarActive}
+          setSearchResults={setSearchResults}
         />
       </div>
     </header>

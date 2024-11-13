@@ -8,7 +8,7 @@ const Profile = ({ token, userId, handleTokenAndId }) => {
   const [userInfo, setUserInfo] = useState({});
   const navigate = useNavigate();
   const handleLogout = () => {
-    handleTokenAndId(null);
+    handleTokenAndId(null, null);
     navigate("/login");
   };
 
@@ -24,8 +24,8 @@ const Profile = ({ token, userId, handleTokenAndId }) => {
           //     throw new Error("Token ou ID utilisateur manquant");
           //   }
           const response = await axios.get(
-            `http://localhost:4000/user/${userId}`
-            // `https://site--marvel-backend--9gtnl5qyn2yw.code.run/user/${userId}`
+            // `http://localhost:4000/user/${userId}`
+            `https://site--marvel-backend--9gtnl5qyn2yw.code.run/user/${userId}`
             // {
             //   headers: {
             //     Authorization: `Bearer ${token}`,
@@ -48,7 +48,9 @@ const Profile = ({ token, userId, handleTokenAndId }) => {
     const confirmation = window.confirm("Êtes-vous sûr de vouloir supprimer vos informations ?");
     if (confirmation) {
       try {
-        const response = await axios.delete(`http://localhost:4000/user/${userId}`);
+        const response = await axios.delete(
+          `https://site--marvel-backend--9gtnl5qyn2yw.code.run/user/${userId}`
+        );
         if (response.status === 200) {
           alert("Vos informations ont été supprimées.");
 

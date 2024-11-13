@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import ReactPaginate from "react-paginate";
 import "../styles/Paginate.css";
 
@@ -12,19 +12,27 @@ const Paginate = ({
   const onPageChange = ({ selected }) => {
     onChangeCurrentPage(selected);
   };
+
   const pageCount = useMemo(
     () => Math.ceil(data?.length / itemsPerPage) || 0,
     [data?.length, itemsPerPage]
   );
   const startDisplay = useMemo(() => currentPage * itemsPerPage, [currentPage, itemsPerPage]);
   const endDisplay = useMemo(() => startDisplay + itemsPerPage, [startDisplay, itemsPerPage]);
-  useMemo(() => {
-    const pageData = data.slice(startDisplay, endDisplay);
+  // useMemo(() => {
+  //   const pageData = data.slice(startDisplay, endDisplay);
+  //   // onChangeCurrentPageData(pageData);
+  //   // console.log(pageData);
+  //   return pageData;
+  // }, [data, endDisplay, startDisplay]);
+  const pageData = useMemo(
+    () => data.slice(startDisplay, endDisplay),
+    [data, startDisplay, endDisplay]
+  );
+  //appele de la fonction seulement lorsque pageData change, évitant ainsi la mise à jour d'un état du parent pendant le rendu de l'enfant.
+  useEffect(() => {
     onChangeCurrentPageData(pageData);
-    console.log(pageData);
-    return pageData;
-  }, [data, endDisplay, startDisplay, onChangeCurrentPageData]);
-
+  }, [pageData, onChangeCurrentPageData]);
   return (
     <ReactPaginate
       pageCount={pageCount}

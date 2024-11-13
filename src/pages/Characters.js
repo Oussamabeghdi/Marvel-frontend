@@ -17,12 +17,15 @@ const Characters = ({
   onChangeCurrentPageData, // Fonction pour changer les données de la page actuelle passée en prop
   userId, // ID de l'utilisateur passé en prop
 }) => {
-  const [data, setData] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
+  const [data, setData] = useState();
+  const [filteredData, setFilteredData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     setCurrentPage(0);
   }, [setCurrentPage]);
+  useEffect(() => {
+    setSearchResults("");
+  }, [setSearchResults]);
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -30,10 +33,10 @@ const Characters = ({
         const response = await axios.get(
           `https://site--marvel-backend--9gtnl5qyn2yw.code.run/characters?&name=${searchResults}`
         ); // Requête API pour récupérer les personnages en fonction des résultats de recherche
-        const characterNames = response.data?.results.map((character) => character.name);
-        setAllSuggestions(characterNames); // Stocke les noms dans allSuggestions
+        const charactersNames = response.data?.results.map((characters) => characters.name);
+        setAllSuggestions(charactersNames); // Stocke les noms dans allSuggestions
 
-        console.log(response.data.results); // Affiche les données de la réponse dans la console
+        // console.log(response.data.results); // Affiche les données de la réponse dans la console
         setData(response.data.results); // Met à jour l'état avec les données récupérées
         setFilteredData(response.data.results);
       } catch (error) {
@@ -43,12 +46,14 @@ const Characters = ({
       }
     };
 
-    fetchData(); // Appel de la fonction fetchData
+    fetchData();
+
+    // Appel de la fonction fetchData
   }, [searchResults, setAllSuggestions]); // Dépendance du useEffect : se déclenche lorsque searchResults change
   useEffect(() => {
     if (searchResults.length > 2) {
-      const filtered = data?.filter((character) =>
-        character.name.toLowerCase().startsWith(searchResults.toLowerCase())
+      const filtered = data?.filter((characters) =>
+        characters.name.toLowerCase().startsWith(searchResults.toLowerCase())
       );
       setFilteredData(filtered); // Met à jour les données filtrées
     } else {
@@ -79,10 +84,10 @@ const Characters = ({
       <section className="wrapper-characters">
         <div className="characters-container">
           {currentPageCharacters?.length > 0 ? (
-            currentPageCharacters.map((character) => (
+            currentPageCharacters.map((characters) => (
               <CharactersCard
-                key={character._id}
-                item={character}
+                key={characters._id}
+                item={characters}
                 userId={userId}
                 setSearchResults={setSearchResults}
               /> // Affiche une carte de personnage pour chaque élément dans currentPageData

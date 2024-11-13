@@ -68,7 +68,8 @@ const ComicsCard = ({ item, userId, setSearchResults }) => {
         <Heart
           className="card-heart"
           style={{ fill: isFavorite ? "red" : "white", cursor: "pointer" }}
-          onClick={isFavorite ? onRemoveFavorite : onAddFavorite}
+          // onClick={isFavorite ? onRemoveFavorite : onAddFavorite}
+          onClick={async () => (isFavorite ? onRemoveFavorite() : onAddFavorite())}
         />
       </div>
     </section>

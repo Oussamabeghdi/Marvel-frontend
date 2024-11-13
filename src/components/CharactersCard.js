@@ -29,6 +29,7 @@ const CharactersCard = ({ item, userId, setSearchResults }) => {
     if (isFavorite) return;
 
     const characterId = item._id;
+    // const characterId = "5fcf91f4d8a2480017b91454";
     // Requête pour ajouter le personnage aux favoris de l'utilisateur
 
     const response = await axios.put(
@@ -83,6 +84,7 @@ const CharactersCard = ({ item, userId, setSearchResults }) => {
           className="card-heart"
           style={{ fill: isFavorite ? "red" : "white", cursor: "pointer" }}
           onClick={async () => (isFavorite ? onRemoveFavorite() : onAddFavorite())}
+          // onClick={isFavorite ? onRemoveFavorite : onAddFavorite}
         />
       </div>
     </section>

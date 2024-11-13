@@ -6,7 +6,7 @@ import "../styles/Infoscharacter.css";
 
 const InfosCharacter = () => {
   // Déclare un état pour stocker les données du personnage
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
 
   // Déclare un état pour indiquer si les données sont en cours de chargement
   const [isLoading, setIsLoading] = useState(false);
@@ -14,7 +14,7 @@ const InfosCharacter = () => {
   // Récupère les paramètres de l'URL
   const params = useParams();
   const id = params.characterId;
-  console.log(id);
+  // console.log(id);
 
   useEffect(() => {
     setIsLoading(true);
@@ -25,7 +25,7 @@ const InfosCharacter = () => {
         const response = await axios.get(
           `https://site--marvel-backend--9gtnl5qyn2yw.code.run/comics/${id}`
         );
-        console.log(response.data);
+        // console.log(response.data);
         // Met à jour l'état avec les données reçues
 
         setData(response.data);

@@ -7,6 +7,7 @@ import "../styles/Comics.css";
 
 const Comics = ({
   searchResults,
+  setSearchResults,
   setAllSuggestions,
   currentPageData,
   onChangeCurrentPage,
@@ -22,6 +23,9 @@ const Comics = ({
   useEffect(() => {
     setCurrentPage(0);
   }, [setCurrentPage]);
+  useEffect(() => {
+    setSearchResults("");
+  }, [setSearchResults]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +36,7 @@ const Comics = ({
         );
         const comicsTitles = response.data.results.map((comics) => comics.title);
         setAllSuggestions(comicsTitles);
-        console.log(response.data);
+        // console.log(response.data);
         setData(response.data.results);
         setFilteredData(response.data.results);
       } catch (error) {
@@ -56,9 +60,9 @@ const Comics = ({
   }, [searchResults, data, setFilteredData]); // Dépendance sur searchResults et data
 
   const itemsPerPage = 16;
-  // const indexOfFirstItem = currentPage * itemsPerPage; // Début de la page actuelle
-  // const indexOfLastItem = indexOfFirstItem + itemsPerPage;
-  // const currentPageComics = filteredData?.slice(indexOfFirstItem, indexOfLastItem);
+  const indexOfFirstItem = currentPage * itemsPerPage; // Début de la page actuelle
+  const indexOfLastItem = indexOfFirstItem + itemsPerPage;
+  const currentPageComics = filteredData?.slice(indexOfFirstItem, indexOfLastItem);
   return isloading ? (
     <div className="loading-wrapper">
       <Oval
@@ -74,8 +78,8 @@ const Comics = ({
   ) : (
     <section className="comics-wrapper">
       <div className="comics-container">
-        {filteredData.length > 0 ? (
-          filteredData.map((comics, index) => {
+        {currentPageComics?.length > 0 ? (
+          currentPageComics.map((comics, index) => {
             return <ComicsCard item={comics} key={index} userId={userId} />;
           })
         ) : (

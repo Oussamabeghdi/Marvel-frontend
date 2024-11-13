@@ -5,7 +5,7 @@ import axios from "axios";
 import "../styles/ComicsList.css";
 
 const ComicsList = () => {
-  const [data, setData] = useState({});
+  const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   const params = useParams();
@@ -17,7 +17,7 @@ const ComicsList = () => {
         const response = await axios.get(
           `https://site--marvel-backend--9gtnl5qyn2yw.code.run/comic/${comicId}`
         );
-        console.log(response.data);
+        // console.log(response.data);
 
         setData(response.data);
         setIsLoading(false);
@@ -27,24 +27,6 @@ const ComicsList = () => {
     };
     fetchData();
   }, [comicId]);
-  // const translateDescription = async () => {
-  //   if (!data.description) return;
-  //   setIsTranslating(true);
-  //   try {
-  //     const response = await axios.post(
-  //       "https://api.cognitive.microsofttranslator.com/translate", // Remplacez par l'URL de l'API de traduction
-  //       {
-  //         text: data.description,
-  //         targetLanguage: "fr", // Traduire vers le français (ou une autre langue)
-  //       }
-  //     );
-  //     setTranslatedDescription(response.data.translatedText);
-  //   } catch (error) {
-  //     console.error("Erreur lors de la traduction :", error);
-  //   } finally {
-  //     setIsTranslating(false);
-  //   }
-  // };
 
   return isLoading ? (
     <div className="loading-wrapper">
@@ -68,8 +50,10 @@ const ComicsList = () => {
         />
         <article className="comic-container">
           <div>
-            <p className="comic-title">{data?.title && data.title.replace(/#/g, "Issue# : ")}</p>
-            <p className="comic-description">
+            <>
+              <p className="comic-title">{data?.title && data.title.replace(/#/g, "Issue# : ")}</p>
+            </>
+            <div className="comic-description">
               {data.description ? (
                 data?.description
                   .replace(/&ndash;/g, "-")
@@ -79,7 +63,7 @@ const ComicsList = () => {
               ) : (
                 <div>Désolé ! Pas de description</div>
               )}
-            </p>
+            </div>
           </div>
         </article>
       </div>

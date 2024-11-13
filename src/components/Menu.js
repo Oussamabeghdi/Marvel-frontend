@@ -40,14 +40,14 @@ const Menu = ({
   };
   //Gestion de la navigation pour la page (favoris) :si le token et le userId existe alors la navigation se fait vers la page /comics
 
-  const handleGoToFavorites = () => {
-    if (token && userId) {
-      navigate("/favorites");
-    } else {
-      //sinon on est renvoyé vers la page /login
-      navigate("/login");
-    }
-  };
+  // const handleGoToFavorites = () => {
+  //   if (token && userId) {
+  //     navigate("/favorites");
+  //   } else {
+  //     //sinon on est renvoyé vers la page /login
+  //     navigate("/login");
+  //   }
+  // };
 
   useEffect(() => {
     setShowItems(false);
@@ -57,7 +57,7 @@ const Menu = ({
       setShowItems(false);
       const timer = setTimeout(() => {
         setShowItems(true);
-      }, 1000);
+      }, 1500);
       return () => clearTimeout(timer);
     }
   }, [token, location.pathname]);
@@ -75,7 +75,7 @@ const Menu = ({
             <li
               onClick={() => {
                 handleClickCharacters();
-                setSearchResults("");
+                // setSearchResults("");
               }}
             >
               Personnages
@@ -83,19 +83,15 @@ const Menu = ({
             <li
               onClick={() => {
                 handleClickComics();
-                setSearchResults("");
+                // setSearchResults("");
               }}
             >
               Comics
             </li>
-            <li
-              onClick={() => {
-                handleGoToFavorites();
-                setSearchResults("");
-              }}
-            >
-              Favoris
-            </li>
+
+            <Link to="/favorites">
+              <li>Favoris</li>
+            </Link>
             <li className="button-go-to-profil">
               <Link to="/profile">
                 <span>Profil</span>

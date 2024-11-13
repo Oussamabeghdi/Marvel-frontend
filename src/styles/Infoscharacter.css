@@ -23,14 +23,16 @@
   flex-direction: column;
   align-items: center;
   /* background-color: rgb(102, 92, 92); */
-  border: 1px solid white;
+  border: 4px solid white;
   border-radius: 7px;
 }
 
 .container-title-description .title {
   text-transform: capitalize;
   font-size: x-large;
+  font-weight: 600;
   margin: 0 0 20px 0;
+  padding: 5px;
 }
 .infos-div img {
   border-radius: 5px;
@@ -92,6 +94,7 @@
   padding: 1rem;
   font-weight: bolder;
 }
+
 /* and (min-width: 700px) and */
 
 @media screen and (max-width: 940px) {
@@ -115,10 +118,13 @@
     align-items: center;
   }
   .comic-list {
+    /* display: flex; */
     grid-template-columns: 1fr 1fr 1fr;
   }
   .empty-comics-list-container {
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -133,5 +139,12 @@
   }
   .comic-card {
     width: 90%;
+  }
+  .comics-list-title {
+    font-size: large;
+    text-align: center;
+  }
+  .container-title-description .title {
+    font-size: large;
   }
 }

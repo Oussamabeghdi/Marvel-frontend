@@ -90,7 +90,6 @@ function App() {
           modalIsOpen={modalIsOpen}
           setModalIsOpen={setModalIsOpen}
         />
-        {/* Routes définissant les pages de l'application */}
         <Routes>
           {/* Route pour la page de connexion */}
           <Route path="/" element={<Login token={token} handleTokenAndId={handleTokenAndId} />} />
@@ -128,6 +127,7 @@ function App() {
               <Comics
                 userId={userId}
                 searchResults={searchResults}
+                setSearchResults={setSearchResults}
                 setAllSuggestions={setAllSuggestions}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
@@ -149,6 +149,7 @@ function App() {
             path="/favorites"
             element={
               <Favorites
+                token={token}
                 userId={userId}
                 currentPage={currentPage}
                 onChangeCurrentPage={onChangeCurrentPage}
