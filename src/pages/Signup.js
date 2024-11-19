@@ -2,7 +2,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import validator from "validator";
+import ShowHidePasswordButton from "../components/ShowHidePasswordButton";
 import "../styles/Signup.css";
+import "../styles/ShowHidePasswordButton.css";
 
 const Signup = ({ handleTokenAndId }) => {
   const [username, setUsername] = useState("");
@@ -12,6 +14,10 @@ const Signup = ({ handleTokenAndId }) => {
   const [textInput, setTextInput] = useState("");
   const [errorMessage, setErrorMessage] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState({
+    password: false,
+    confirmPassword: false,
+  });
 
   const navigate = useNavigate();
 
@@ -20,7 +26,7 @@ const Signup = ({ handleTokenAndId }) => {
 
     // Valider l'email
     if (!validator.isEmail(email)) {
-      newErrors.email = "Email invalide.";
+      newErrors.email = "Email invalide";
     }
 
     // Valider le mot de passe (exemple : minimum 6 caractères)
@@ -66,9 +72,10 @@ const Signup = ({ handleTokenAndId }) => {
           handleTokenAndId(response.data.token, response.data._id);
 
           setSuccessMessage("Félicitation! Votre inscription a été enregistrée avec succès! ");
-          navigate("/login");
-          // setTimeout(() => {
-          // }, 1000);
+
+          setTimeout(() => {
+            navigate("/login");
+          }, 1000);
         }
       } catch (error) {
         if (error.response.data.message === "email already used") {
@@ -93,6 +100,9 @@ const Signup = ({ handleTokenAndId }) => {
     // Mettre à jour textInput pour la vérification
     setTextInput(sanitizedInput);
   };
+  const setPasswordVisibility = (field, value) => {
+    setPasswordVisible((prev) => ({ ...prev, [field]: value }));
+  };
   return (
     <section className="register-container">
       <div className="signup-container">
@@ -101,59 +111,70 @@ const Signup = ({ handleTokenAndId }) => {
             <p className="successMessage-subscribe">{successMessage} </p>
           </div>
         )}
+        <div>
+          <form onSubmit={handleSignup}>
+            <h1>S'inscrire</h1>
+            <input
+              label="username"
+              id="username"
+              value={username}
+              type="text"
+              placeholder="Nom"
+              onChange={handleInputChange(setUsername)}
+            />
+            <input
+              label="email"
+              id="email"
+              value={email}
+              type="mail"
+              placeholder="Email"
+              onChange={handleInputChange(setEmail)}
+            />
 
-        <form onSubmit={handleSignup}>
-          <h1>S'inscrire</h1>
-          <input
-            label="username"
-            id="username"
-            value={username}
-            type="text"
-            placeholder="Nom"
-            onChange={handleInputChange(setUsername)}
-          />
-          <input
-            label="email"
-            id="email"
-            value={email}
-            type="mail"
-            placeholder="Email"
-            onChange={handleInputChange(setEmail)}
-          />
-
-          <input
-            id="password"
-            value={password}
-            type="password"
-            placeholder="Mot de passe"
-            onChange={handleInputChange(setPassword)}
-          />
-
-          <input
-            id="confirmPassword"
-            value={confirmPassword}
-            type="password"
-            placeholder="Confirmer mot de passe"
-            onChange={handleInputChange(setConfirmPassword)}
-          />
-          <input className="signup-btn" type="submit" value="S'inscrire" />
-
-          <Link to="/login">
-            <div className="tu-as-deja-un-cpte">
-              <p>Tu as déjà un compte? Connecte-toi !</p>
+            <div className="input-password-btn-visibility-container">
+              <input
+                id="password"
+                value={password}
+                type={passwordVisible.password ? "text" : "password"}
+                placeholder="Mot de passe"
+                onChange={handleInputChange(setPassword)}
+              />
+              <ShowHidePasswordButton
+                passwordVisible={passwordVisible}
+                setPasswordVisibility={setPasswordVisibility}
+                field="password"
+              />
             </div>
-          </Link>
-          {errorMessage.parameters && (
-            <span style={{ color: "red" }}> {errorMessage.parameters}</span>
-          )}
-          {errorMessage.glopal && <span style={{ color: "red" }}> {errorMessage.glopal}</span>}
-          {errorMessage.email && <span style={{ color: "red" }}>{errorMessage.email}</span>}
-          {errorMessage.password && <span style={{ color: "red" }}>{errorMessage.password}</span>}
-          {errorMessage.confirmPassword && (
-            <span style={{ color: "red" }}>{errorMessage.confirmPassword}</span>
-          )}
-          {errorMessage.textInput && <span style={{ color: "red" }}>{errorMessage.textInput}</span>}
-        </form>
+            <div className="input-password-btn-visibility-container">
+              <input
+                id="confirmPassword"
+                value={confirmPassword}
+                type={passwordVisible.confirmPassword ? "text" : "password"}
+                placeholder="Confirmer mot de passe"
+                onChange={handleInputChange(setConfirmPassword)}
+              />
+              <ShowHidePasswordButton
+                passwordVisible={passwordVisible}
+                setPasswordVisibility={setPasswordVisibility}
+                field="confirmPassword"
+              />
+            </div>
+
+            <input className="signup-btn" type="submit" value="S'inscrire" />
+
+            <Link to="/login">
+              <div className="tu-as-deja-un-cpte">
+                <p>Tu as déjà un compte? Connecte-toi !</p>
+              </div>
+            </Link>
+            {errorMessage.parameters && <span> {errorMessage.parameters}</span>}
+            {errorMessage.glopal && <span> {errorMessage.glopal}</span>}
+            {errorMessage.email && <span>{errorMessage.email}</span>}
+            {errorMessage.password && <span>{errorMessage.password}</span>}
+            {errorMessage.confirmPassword && <span>{errorMessage.confirmPassword}</span>}
+            {errorMessage.textInput && <span>{errorMessage.textInput}</span>}
+          </form>
+        </div>
       </div>
       {/* {errorMessage.global && <span style={{ color: "red" }}>{errorMessage.global}</span>} */}
     </section>

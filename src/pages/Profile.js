@@ -6,6 +6,11 @@ import Cookies from "js-cookie";
 
 const Profile = ({ token, userId, handleTokenAndId }) => {
   const [userInfo, setUserInfo] = useState({});
+  const [changeUsername, setChangeUsername] = useState("");
+  const [changeEmail, setChangeEmail] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [message, setMessage] = useState("");
+
   const navigate = useNavigate();
   const handleLogout = () => {
     handleTokenAndId(null, null);
@@ -35,6 +40,7 @@ const Profile = ({ token, userId, handleTokenAndId }) => {
 
           setUserInfo(response.data);
           console.log(response.data.token);
+          console.log(userId);
         } catch (error) {
           console.log(error.message);
 
@@ -63,37 +69,120 @@ const Profile = ({ token, userId, handleTokenAndId }) => {
     }
   };
 
+  const handleFieldUpdate = async () => {
+    try {
+      const response = await axios.put(
+        `https://site--marvel-backend--9gtnl5qyn2yw.code.run/update/user/${userId}`,
+        {
+          "account.username": changeUsername,
+          email: changeEmail,
+        }
+      );
+      if (response.status === 200) {
+        alert("Mise à jour réussie");
+        setSuccessMessage("Mise à jour réussie");
+      }
+    } catch (error) {
+      console.log(error.response.data);
+      if (error.response.data.message === "Error updating user") {
+        setMessage("Veuillez remplir tous les champs");
+      }
+    }
+  };
   return (
     <section className="profile-container">
-      <h1>Mon Profil</h1>
+      <p style={{ color: "red" }}>{successMessage}</p>
+      <p style={{ color: "red" }}>{message} </p>
+      <h1>Mon Profil 👨‍🏫</h1>
       <div className="user-info">
-        <p style={{ color: "white" }}>
-          <strong>Nom d'utilisateur :</strong> {userInfo.username}
-        </p>
-        <p style={{ color: "white" }}>
-          <strong>Email :</strong> {userInfo.email}
-        </p>
-        <p style={{ color: "white" }}>{/* <strong>Hash :</strong> {userInfo.hash} */}</p>
-        <p style={{ color: "white" }}>{/* <strong>Salt :</strong> {userInfo.salt} */}</p>
-        {/* <p style={{ color: "white" }}>
-          <strong>Date d'inscription :</strong> {new Date(userInfo.createdAt).toLocaleDateString()}
-        </p> */}
+        <table>
+          <tr>
+            <th>Nom</th>
+            <th>Email</th>
+          </tr>
+          <tr>
+            <td> {userInfo.username}</td>
+            <td> {userInfo.email}</td>
+          </tr>
+          <tr>
+            <td>
+              <input
+                style={{
+                  width: "90%",
+                  height: "27px",
+                  borderRadius: "5px",
+                  border: "none",
+                  padding: "6px",
+                }}
+                value={changeUsername}
+                id="username"
+                type="text"
+                placeholder="Entrez votre nouveau nom ..."
+                onChange={(e) => {
+                  setChangeUsername(e.target.value);
+                }}
+              />
+            </td>
+
+            <td>
+              <input
+                style={{
+                  width: "90%",
+                  height: "27px",
+                  borderRadius: "5px",
+                  border: "none",
+                  padding: "6px",
+                }}
+                value={changeEmail}
+                id="email"
+                type="email"
+                placeholder="Entrez votre nouvel email ..."
+                onChange={(e) => {
+                  setChangeEmail(e.target.value);
+                }}
+              />
+            </td>
+          </tr>
+        </table>
+        <button
+          className="modify-button-profile"
+          onClick={() => {
+            handleFieldUpdate();
+          }}
+        >
+          Modifier mes informations
+        </button>
       </div>
-      <button
-        onClick={() => {
-          // Logique pour se déconnecter, par exemple en supprimant le token
-          handleLogout();
-        }}
-      >
-        Se déconnecter
-      </button>
-      <button
-        onClick={() => {
-          handleDelete();
-        }}
-      >
-        Supprimer votre compte
-      </button>
+      <div className="button-profile-container">
+        <button
+          className="button-profile"
+          onClick={() => {
+            // Logique pour se déconnecter, par exemple en supprimant le token
+            handleLogout();
+          }}
+        >
+          Se déconnecter
+        </button>
+
+        <button
+          className="button-profile"
+          onClick={() => {
+            handleDelete();
+          }}
+        >
+          Supprimer mon compte
+        </button>
+        <button
+          className="button-profile"
+          onClick={() => {
+            setChangeUsername("");
+            setChangeEmail("");
+            setMessage("");
+          }}
+        >
+          Effacer
+        </button>
+      </div>
     </section>
   );
 };

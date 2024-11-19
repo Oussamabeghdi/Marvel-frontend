@@ -1,19 +1,87 @@
 .profile-container {
-  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  gap: 5px;
+  width: 100%;
+  max-width: 500px;
   margin: 0 auto;
+  padding: 16px;
+  box-sizing: border-box;
 }
 
 .user-info {
-  width: 500px;
+  background: rgb(57, 54, 54);
   height: 350px;
   border: 2px solid orange;
-  display: flex;
-  flex-direction: column;
+  border-radius: 5px;
   padding: 5px;
 }
 .user-info > p {
-  margin: 10px 0;
+  margin: 13px 0;
   display: flex;
-  /* flex-direction: column; */
-  gap: 5px;
+  gap: 8px;
+  border-bottom: 1px solid white;
+  color: rgb(252, 252, 252);
+  padding: 3px;
+}
+
+.button-profile {
+  background: rgb(114, 104, 104);
+  color: rgb(238, 197, 121);
+  height: 35px;
+  width: 150px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.button-profile:hover {
+  background: rgb(55, 23, 198);
+  color: white;
+}
+.button-profile-container {
+  display: flex;
+  /* justify-content: space-between; */
+  gap: 13px;
+}
+.modify-button-profile {
+  height: 35px;
+  background: rgb(114, 104, 104);
+  color: rgb(238, 197, 121);
+  margin-top: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+table {
+  border: 1px solid black;
+  border-collapse: collapse;
+
+  width: 100%;
+  border: 1px dotted red;
+}
+
+td,
+th {
+  align-content: center;
+  border: 1px dotted red;
+  /* width: 200px; */
+  height: 40px;
+  text-align: center;
+  color: white;
+}
+
+input::placeholder {
+  font-size: small;
+  color: rgb(193, 189, 189); /* Remplacez 'red' par la couleur de votre choix */
+}
+@media (max-width: 460px) {
+  .button-profile {
+    font-size: x-small;
+  }
+  .button-profile-container {
+    display: flex;
+    justify-content: space-around;
+  }
 }

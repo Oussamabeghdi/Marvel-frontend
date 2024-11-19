@@ -19,22 +19,23 @@
   background-position-y: top;
   /* gap: 30px; */
 }
-/* .label {
-  margin-bottom: 10px;
-} */
 
-.login-container div {
+.login-container :last-child {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  align-items: flex-start;
+  /* align-items: flex-start; */
 }
-
+.login-container :nth-last-child(2) {
+  display: flex;
+  /* justify-content: center; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+  /* align-items: flex-start; */
+}
 .login-btn {
-  /* background-color: red;*/
-
-  /* color: rgb(175, 207, 88); */
+  cursor: pointer;
   letter-spacing: 1px;
 }
 
@@ -44,11 +45,31 @@
   height: 40px;
   border-radius: 7px;
   background-color: transparent;
+  border-color: grey;
   color: white;
   font-weight: 40px;
   font-size: bold;
 }
+.login-container input:hover {
+  backdrop-filter: blur(10px);
+}
+.input-password {
+  /* width: 300px; */
 
+  display: flex;
+
+  position: relative;
+}
+/* .toggle-password-visibility {
+  position: absolute;
+  border-radius: 5px;
+  background: white;
+  cursor: pointer;
+  left: 90%;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+} */
 .login-container h1 {
   letter-spacing: 1px;
   text-align: center;
@@ -78,13 +99,19 @@
 .hidden {
   display: none;
 }
-
+/* .login-btn-link-to-subscribe-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  align-items: flex-start;
+} */
 .link-to-subscribe {
   width: 300px;
   height: 40px;
   color: white;
   font-size: 16px;
-  margin-top: 30px;
+  /* margin-top: 30px; */
 }
 .link-to-subscribe p {
   margin: 0 auto;

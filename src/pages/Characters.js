@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Paginate from "../components/Paginate";
 import CharactersCard from "../components/CharactersCard";
@@ -20,6 +21,7 @@ const Characters = ({
   const [data, setData] = useState();
   const [filteredData, setFilteredData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
   useEffect(() => {
     setCurrentPage(0);
   }, [setCurrentPage]);
@@ -81,6 +83,11 @@ const Characters = ({
     </div>
   ) : (
     <>
+      <div>
+        <button className="button-return-to-previous-page" onClick={() => navigate(-1)}>
+          <span className="arrow">⥢</span>
+        </button>
+      </div>
       <section className="wrapper-characters">
         <div className="characters-container">
           {currentPageCharacters?.length > 0 ? (

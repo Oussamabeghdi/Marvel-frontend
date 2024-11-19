@@ -17,7 +17,6 @@ const Header = ({
   suggestions,
   allSuggestions,
   setAllSuggestions,
-  sucessMessage,
 }) => {
   const [navbarActive, setNavbarActive] = useState(false);
   const [showItems, setShowItems] = useState(false);
@@ -49,7 +48,7 @@ const Header = ({
           <img src={logo} alt="marvel" />
         )}
       </div>
-      <p>{sucessMessage} </p>
+
       <div className="menu-desktop">
         <Menu
           setSearchResults={setSearchResults}
@@ -62,6 +61,7 @@ const Header = ({
       </div>
       {token && showItems && (
         <Searchbar
+          token={token}
           setFilteredSuggestions={setFilteredSuggestions}
           filteredSuggestions={filteredSuggestions}
           searchResults={searchResults}

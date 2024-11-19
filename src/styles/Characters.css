@@ -97,7 +97,15 @@
 .card-heart {
   height: 30px;
 }
-
+.button-return-to-previous-page {
+  background: rgba(0, 0, 0, 0.39);
+  color: white;
+  cursor: pointer;
+  /* padding: 5px; */
+  /* margin-top: 5px; */
+  border: 1px solid rgb(22, 18, 18);
+  border-radius: 5px;
+}
 @media screen and (max-width: 700px) {
   .wrapper-characters {
     grid-template-columns: 1fr;
