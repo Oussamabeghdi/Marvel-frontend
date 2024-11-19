@@ -93,7 +93,7 @@ const Login = ({ token, handleTokenAndId }) => {
             // className="toggle-password-visibility-signup"
             passwordVisible={passwordVisible}
             setPasswordVisibility={setPasswordVisibility}
-            fiels="password"
+            field="password"
           />
           {/* <button
             className="toggle-password-visibility"
