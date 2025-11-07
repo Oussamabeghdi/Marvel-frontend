@@ -95,13 +95,6 @@ const Login = ({ token, handleTokenAndId }) => {
             setPasswordVisibility={setPasswordVisibility}
             field="password"
           />
-          {/* <button
-            className="toggle-password-visibility"
-            type="button"
-            onClick={togglePasswordVisibility}
-          >
-            {passwordVisible ? "👁" : "🔒"}
-          </button> */}
         </div>
         <div className="login-btn-link-to-subscribe-container">
           <input className="login-btn" type="submit" value="Se connecter" />

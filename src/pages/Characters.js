@@ -7,16 +7,16 @@ import { Oval } from "react-loader-spinner";
 import "../styles/Characters.css";
 
 const Characters = ({
-  searchResults, // Résultats de la recherche passée en prop
+  searchResults,
   setSearchResults,
-  currentPage, // Page actuelle passée en prop
+  currentPage,
   allSuggestions,
   setAllSuggestions,
-  setCurrentPage, // Fonction pour changer la page actuelle passée en prop
-  currentPageData, // Données de la page actuelle passée en prop
-  onChangeCurrentPage, // Fonction pour changer la page actuelle passée en prop
-  onChangeCurrentPageData, // Fonction pour changer les données de la page actuelle passée en prop
-  userId, // ID de l'utilisateur passé en prop
+  setCurrentPage,
+  currentPageData,
+  onChangeCurrentPage,
+  onChangeCurrentPageData,
+  userId,
 }) => {
   const [data, setData] = useState();
   const [filteredData, setFilteredData] = useState();
@@ -34,41 +34,37 @@ const Characters = ({
       try {
         const response = await axios.get(
           `https://site--marvel-backend--9gtnl5qyn2yw.code.run/characters?&name=${searchResults}`
-        ); // Requête API pour récupérer les personnages en fonction des résultats de recherche
+        );
         const charactersNames = response.data?.results.map((characters) => characters.name);
-        setAllSuggestions(charactersNames); // Stocke les noms dans allSuggestions
+        setAllSuggestions(charactersNames);
 
-        // console.log(response.data.results); // Affiche les données de la réponse dans la console
-        setData(response.data.results); // Met à jour l'état avec les données récupérées
+        setData(response.data.results);
         setFilteredData(response.data.results);
       } catch (error) {
-        console.log(error.response.data.message); // Affiche le message d'erreur dans la console
+        console.log(error.response.data.message);
       } finally {
-        setIsLoading(false); // Assurez-vous que le chargement est terminé ici
+        setIsLoading(false);
       }
     };
 
     fetchData();
-
-    // Appel de la fonction fetchData
-  }, [searchResults, setAllSuggestions]); // Dépendance du useEffect : se déclenche lorsque searchResults change
+  }, [searchResults, setAllSuggestions]);
   useEffect(() => {
     if (searchResults.length > 2) {
       const filtered = data?.filter((characters) =>
         characters.name.toLowerCase().startsWith(searchResults.toLowerCase())
       );
-      setFilteredData(filtered); // Met à jour les données filtrées
+      setFilteredData(filtered);
     } else {
-      setFilteredData(data); // Si aucune recherche, afficher tous les personnages
+      setFilteredData(data);
     }
-  }, [searchResults, data]); // Dépendance sur searchResults et data
+  }, [searchResults, data]);
 
   const itemsPerPage = 16;
-  const indexOfFirstItem = currentPage * itemsPerPage; // Début de la page actuelle
+  const indexOfFirstItem = currentPage * itemsPerPage;
   const indexOfLastItem = indexOfFirstItem + itemsPerPage;
   const currentPageCharacters = filteredData?.slice(indexOfFirstItem, indexOfLastItem);
 
-  // Affichage conditionnel en fonction de l'état de chargement
   return isLoading ? (
     <div className="loading-wrapper">
       <Oval
@@ -97,7 +93,7 @@ const Characters = ({
                 item={characters}
                 userId={userId}
                 setSearchResults={setSearchResults}
-              /> // Affiche une carte de personnage pour chaque élément dans currentPageData
+              />
             ))
           ) : (
             <p style={{ fontSize: "26px", color: "white" }}>Aucun personnage trouvé</p>

@@ -17,25 +17,15 @@ const Profile = ({ token, userId, handleTokenAndId }) => {
     navigate("/login");
   };
 
-  //   const params = useParams();
-  //   const user = params.id;
   useEffect(() => {
     const token = Cookies.get("token-user");
     const userId = Cookies.get("userId");
     if (token && userId) {
       const fetchUserInfo = async () => {
         try {
-          //   if (!userId || !token) {
-          //     throw new Error("Token ou ID utilisateur manquant");
-          //   }
           const response = await axios.get(
             // `http://localhost:4000/user/${userId}`
             `https://site--marvel-backend--9gtnl5qyn2yw.code.run/user/${userId}`
-            // {
-            //   headers: {
-            //     Authorization: `Bearer ${token}`,
-            //   },
-            // }
           );
 
           setUserInfo(response.data);

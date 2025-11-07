@@ -18,36 +18,21 @@ const Menu = ({
   const location = useLocation();
   const [showItems, setShowItems] = useState(false);
 
-  //Gestion de la navigation pour la page (characters):si le token et le userId existe alors la navigation
-  // se fait vers la page /characteres
   const handleClickCharacters = () => {
     if (token && userId) {
       navigate("/characters");
-      //sinon on est renvoyé vers la page /login
     } else {
       navigate("/login");
     }
   };
-  //Gestion de la navigation pour la page (comics) :si le token et le userId existe alors la navigation
-  // se fait vers la page /comics
+
   const handleClickComics = () => {
     if (token && userId) {
       navigate("/comics");
     } else {
-      //sinon on est renvoyé vers la page /login
       navigate("/login");
     }
   };
-  //Gestion de la navigation pour la page (favoris) :si le token et le userId existe alors la navigation se fait vers la page /comics
-
-  // const handleGoToFavorites = () => {
-  //   if (token && userId) {
-  //     navigate("/favorites");
-  //   } else {
-  //     //sinon on est renvoyé vers la page /login
-  //     navigate("/login");
-  //   }
-  // };
 
   useEffect(() => {
     setShowItems(false);

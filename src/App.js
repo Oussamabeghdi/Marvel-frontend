@@ -43,8 +43,6 @@ function App() {
   const [currentPage, setCurrentPage] = useState(0);
   const [currentPageData, setCurrentPageData] = useState([]);
   const [allSuggestions, setAllSuggestions] = useState([]);
-  //  state pour gérer la section actuelle
-  // const [currentSection, setCurrentSection] = useState("characters");
 
   const onChangeCurrentPageData = useCallback((pageData) => {
     setCurrentPageData(() => pageData);
@@ -72,10 +70,7 @@ function App() {
 
   return (
     <div className="app-wrapper">
-      {/* Définition du router pour gérer la navigation entre les pages */}
-
       <Router>
-        {/* Header avec plusieurs props pour la gestion de la connexion et de la recherche */}
         <Header
           token={token}
           userId={userId}
@@ -91,14 +86,10 @@ function App() {
           setModalIsOpen={setModalIsOpen}
         />
         <Routes>
-          {/* Route pour la page de connexion */}
           <Route path="/" element={<Login token={token} handleTokenAndId={handleTokenAndId} />} />
-          {/* Route pour la page d'inscription */}
           <Route path="/signup" element={<Signup handleTokenAndId={handleTokenAndId} />} />
-          {/* Route alternative pour la page de connexion */}
           <Route path="/login" element={<Login handleTokenAndId={handleTokenAndId} />} />
-          {/* Route pour la page de profil */}
-          {/* Route pour la page de personnages Marvel */}
+
           <Route
             path="/characters"
             element={
@@ -115,7 +106,6 @@ function App() {
               />
             }
           />
-          {/* Route pour la page des comics */}
           <Route path="/character/:characterId" element={<InfosCharacter />} />
           <Route
             path="/comics/:characterId"
@@ -141,10 +131,8 @@ function App() {
             path="/profile"
             element={<Profile token={token} userId={userId} handleTokenAndId={handleTokenAndId} />}
           />
-          {/* Route pour la page de détails d'un personnage spécifique */}
-          {/* Route pour la page de détails d'un comic spécifique */}
+
           <Route path="/comic/:comicId" element={<ComicsList />} />
-          {/* Route pour la page des favoris */}
           <Route
             path="/favorites"
             element={
@@ -158,9 +146,7 @@ function App() {
             }
           />
         </Routes>
-        {/* Bouton pour remonter en haut de la page */}
         <ButtonScrollToTop />
-        {/* Pied de page avec gestion de la déconnexion */}
         <Footer token={token} setToken={setToken} />
       </Router>
     </div>

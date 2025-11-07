@@ -27,12 +27,8 @@ const FavoriteCard = ({ type, elementId }) => {
         const response = await axios.get(
           `https://site--marvel-backend--9gtnl5qyn2yw.code.run/${currentType}/${elementId}`
         );
-        // console.log(
-        //   `Fetching from: https://site--marvel-backend--9gtnl5qyn2yw.code.run/${currentType}/${elementId}`
-        // );
 
         const data = response.data;
-        // console.log({ data: data });
 
         setData(data);
         console.log(data);

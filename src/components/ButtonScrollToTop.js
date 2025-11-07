@@ -4,7 +4,6 @@ import "../styles/buttonScrollToTop.css";
 const ButtonScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Fonction pour faire défiler la page vers le haut
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -12,7 +11,6 @@ const ButtonScrollToTop = () => {
     });
   };
 
-  // Écouter le défilement de la page
   const toggleVisibility = () => {
     if (window.scrollY > 300) {
       setIsVisible(true);

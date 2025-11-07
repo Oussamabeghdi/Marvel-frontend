@@ -65,7 +65,7 @@ const Signup = ({ handleTokenAndId }) => {
             confirmPassword: confirmPassword,
           }
         );
-        // console.log(response.data);
+
         console.log(response.data.token);
 
         if (response.data.token) {

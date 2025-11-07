@@ -38,8 +38,7 @@ const Searchbar = ({
     setFilteredSuggestions([]);
     setShowSuggestions(false);
   };
-  //Je crée un evenement au clique sur l'icone,
-  // qui aura pour effet de mettre le focus sur l'input
+
   const handleIconClick = () => {
     if (inputRef.current) {
       inputRef.current.focus();
@@ -104,16 +103,3 @@ const Searchbar = ({
   );
 };
 export default Searchbar;
-//Je crée une référence avec useRef et je l'initialise avec null,cette reference ne pointe vers rien donc elle est defenie à "null".
-// La référence sera ensuite liée à un élément DOM.
-
-// const handleSearchResults = (event) => {
-//   setSearchResults(event.target.value);
-//   let value = event.target.value;
-//   value.length > 2 && setSearchResults(value);
-// };
-// const handleKeyBottom = () => {
-//   if (inputRef.current) {
-//     inputRef.current.focus();
-//   }
-// };
